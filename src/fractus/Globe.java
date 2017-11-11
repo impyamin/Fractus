@@ -1,5 +1,7 @@
 package fractus;
 
+import com.sun.prism.TextureMap;
+
 import javafx.scene.shape.Sphere;
 
 public class Globe {
@@ -18,6 +20,7 @@ public class Globe {
 	}
 	public Sphere getSphere(){
 		return sphere;
+		
 	}
 
 
