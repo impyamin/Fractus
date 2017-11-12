@@ -34,7 +34,9 @@ public class View extends Application {
 
 
 		Globe globe = new Globe();
-
+		Mandelbrot mandle = new Mandelbrot();
+		mandle.getPicture();
+		//Image img = new Image();
 
 		Button buttonRight = new Button("->");
 		Button buttonLeft = new Button("<-");
@@ -49,20 +51,25 @@ public class View extends Application {
 		group.getChildren().add(buttonRight);
 		group.getChildren().add(zoom);
 		PhongMaterial phongMaterial = new PhongMaterial();
-		phongMaterial.setDiffuseMap(new Image("http://media.rtl.fr/online/image/2015/1221/7780964243_jean-marie-le-pen-quittant-le-tribunal-de-nanterre-en-juin-2015.jpg",8192 / 2d,4092 / 2d,true,true));
+		phongMaterial.setDiffuseColor(Color.CADETBLUE);
+		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1500 ,1500,true,true));
+		
 		globe.getSphere().setMaterial(phongMaterial);
 		buttonRight.setOnAction((ActionEvent e)->{globe.getSphere().setRotate(actPosX);actPosX+=20;});
 		buttonLeft.setOnAction((ActionEvent e)->{globe.getSphere().setRotate(actPosX);actPosX-=20;});
 		//zoom.setOnAction((ActionEvent e)->{globe.getSphere().setTranslate(zoomValue);zoomValue+=50;});
 
 		globe.getSphere().setVisible(true);
+		
 
 		rotateAroundYAxis(globe.getSphere()).play();
 
 
 		primaryStage.show();
 
-		drawFractale(300,200,200);
+		//drawFractale(300,200,200);
+		
+		
 	}
 
 	public void drawFractale(int x,int y, float rayon)

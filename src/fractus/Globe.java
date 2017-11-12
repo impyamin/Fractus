@@ -7,8 +7,8 @@ import javafx.scene.shape.Sphere;
 public class Globe {
 	
 	final double RADIUS = 480.;
-	final int DEFPOSX = 620;
-	final int DEFPOSY = 620 ;
+	final int DEFPOSX = 500;
+	final int DEFPOSY = 500 ;
 	
 	private Sphere sphere = new Sphere(RADIUS);
 

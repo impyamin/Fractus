@@ -7,7 +7,8 @@ import java.awt.Color;
 
 
 public class Mandelbrot {
-
+    int n   = 500;   // create n-by-n image
+	Picture pic  = new Picture(n,n);
     // return number of iterations to check if c = a + ib is in Mandelbrot set
     public static int mand(Complex z0, int max) {
         Complex z = z0;
@@ -17,16 +18,14 @@ public class Mandelbrot {
         }
         return max;
     }
-
-    public static void main(String[] args)  {
+ 
+    public Mandelbrot()  {
         double xc   = -0.5;
         double yc   = 0;
         double size = 2;
 
-        int n   = 512;   // create n-by-n image
-        int max = 255;   // maximum number of iterations
-
-        Picture picture = new Picture(n, n);
+        int max = 150;   // maximum number of iterations
+ 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 double x0 = xc - size/2 + size*i/n;
@@ -34,9 +33,15 @@ public class Mandelbrot {
                 Complex z0 = new Complex(x0, y0);
                 int gray = max - mand(z0, max);
                 Color color = new Color(gray, gray, gray);
-                picture.set(i, n-1-j, color);
+                pic.set(i, n-1-j, color);
+                System.out.println("Calcul en cours ... \n");
             }
         }
-        picture.show();
+ //       picture.show();
     }
+   public Picture getPicture() {
+	   pic.save("Fractale.png");
+	   return pic ;
+   }
+    
 }
