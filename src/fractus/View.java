@@ -51,10 +51,11 @@ public class View extends Application {
 		group.getChildren().add(buttonRight);
 		group.getChildren().add(zoom);
 		PhongMaterial phongMaterial = new PhongMaterial();
-		phongMaterial.setDiffuseColor(Color.CADETBLUE);
+		//phongMaterial.setDiffuseColor(Color.WHITE);
 		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1500 ,1500,true,true));
 		
 		globe.getSphere().setMaterial(phongMaterial);
+		
 		buttonRight.setOnAction((ActionEvent e)->{globe.getSphere().setRotate(actPosX);actPosX+=20;});
 		buttonLeft.setOnAction((ActionEvent e)->{globe.getSphere().setRotate(actPosX);actPosX-=20;});
 		//zoom.setOnAction((ActionEvent e)->{globe.getSphere().setTranslate(zoomValue);zoomValue+=50;});
@@ -72,7 +73,7 @@ public class View extends Application {
 		
 	}
 
-	public void drawFractale(int x,int y, float rayon)
+	/*public void drawFractale(int x,int y, float rayon)
 	{
 		Circle circle = new Circle(x,y,rayon);
 
@@ -85,7 +86,7 @@ public class View extends Application {
 		if(group.getChildren().size() < 0)
 			drawFractale(x+10,y+20,rayon);
 
-	}
+	}*/
 
 	private RotateTransition rotateAroundYAxis(Sphere s) {
 		RotateTransition rotate = new RotateTransition(Duration.seconds(25), s);
