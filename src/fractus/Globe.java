@@ -6,7 +6,7 @@ import javafx.scene.shape.Sphere;
 
 public class Globe {
 	
-	final double RADIUS = 480.;
+	final double RADIUS = 500.;
 	final int DEFPOSX = 500;
 	final int DEFPOSY = 500 ;
 	

@@ -34,15 +34,22 @@ public class View extends Application {
 
 
 		Globe globe = new Globe();
-		Mandelbrot mandle = new Mandelbrot();
-		mandle.getPicture();
-		//Image img = new Image();
+		FractaleModele fracMod = new FractaleModele();
+		fracMod.createMandelBrot();
+		FractaleControler fracControl = new FractaleControler(fracMod);
+		fracControl.savePicture();
+		fracMod.getResoX();
+		
+		
+		
+		
 
 		Button buttonRight = new Button("->");
 		Button buttonLeft = new Button("<-");
 		Button zoom = new Button("+");
 		buttonRight.setLayoutX(40);
 		zoom.setLayoutX(80);
+		
 		group.getChildren().add(globe.getSphere());
 		primaryStage.setHeight(1920);
 		primaryStage.setWidth(1080);
@@ -52,7 +59,7 @@ public class View extends Application {
 		group.getChildren().add(zoom);
 		PhongMaterial phongMaterial = new PhongMaterial();
 		//phongMaterial.setDiffuseColor(Color.WHITE);
-		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1500 ,1500,true,true));
+		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1000 ,1000,true,true));
 		
 		globe.getSphere().setMaterial(phongMaterial);
 		
