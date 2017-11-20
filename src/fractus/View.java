@@ -45,18 +45,27 @@ public class View extends Application {
 		zoomButton.setLayoutX(80);
 		
 
-		
+		ObservableList<String> options = 
+			    FXCollections.observableArrayList(
+			        "Mandelbrot",
+			        "Option 2"
+			    );
+		final ComboBox comboBox = new ComboBox(options);
 
 
 		PauseButton.setLayoutX(40);
-		
+		comboBox.setLayoutY(30);
+
 		group.getChildren().add(globe.getSphere());
 		primaryStage.setHeight(1920);
 		primaryStage.setWidth(1080);
 		primaryStage.setScene(scene);
+		
 		group.getChildren().add(playButton);
 		group.getChildren().add(PauseButton);
 		group.getChildren().add(zoomButton);
+		group.getChildren().add(comboBox);
+
 		PhongMaterial phongMaterial = new PhongMaterial();
 		//phongMaterial.setDiffuseColor(Color.WHITE);
 		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1000 ,1000,true,true));
