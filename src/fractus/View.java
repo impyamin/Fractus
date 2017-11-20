@@ -21,8 +21,14 @@ public class View extends Application {
 
 	public int actPosX = 0 ;
 	public int zoomValue = 0;
+	Button PauseButton = new Button("||");
+	Button playButton = new Button("|>");
+	Button zoomButton = new Button("+");
+	Globe globe = new Globe();
 	Group group = new Group();
 	Scene scene = new Scene(group,600,800);
+	FractaleModele fracMod = new FractaleModele();
+
 	public static void main(String[] args)
 	{
 		Application.launch(args);
@@ -33,38 +39,31 @@ public class View extends Application {
 		primaryStage.setTitle("Fractus");
 
 
-		Globe globe = new Globe();
-		FractaleModele fracMod = new FractaleModele();
 		fracMod.createMandelBrot();
 		FractaleControler fracControl = new FractaleControler(fracMod);
 		fracControl.savePicture();
-		fracMod.getResoX();
-		
-		
-		
+		zoomButton.setLayoutX(80);
 		
 
-		Button buttonRight = new Button("->");
-		Button buttonLeft = new Button("<-");
-		Button zoom = new Button("+");
-		buttonRight.setLayoutX(40);
-		zoom.setLayoutX(80);
+		
+
+
+		PauseButton.setLayoutX(40);
 		
 		group.getChildren().add(globe.getSphere());
 		primaryStage.setHeight(1920);
 		primaryStage.setWidth(1080);
 		primaryStage.setScene(scene);
-		group.getChildren().add(buttonLeft);
-		group.getChildren().add(buttonRight);
-		group.getChildren().add(zoom);
+		group.getChildren().add(playButton);
+		group.getChildren().add(PauseButton);
+		group.getChildren().add(zoomButton);
 		PhongMaterial phongMaterial = new PhongMaterial();
 		//phongMaterial.setDiffuseColor(Color.WHITE);
 		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1000 ,1000,true,true));
 		
 		globe.getSphere().setMaterial(phongMaterial);
 		
-		buttonRight.setOnAction((ActionEvent e)->{globe.getSphere().setRotate(actPosX);actPosX+=20;});
-		buttonLeft.setOnAction((ActionEvent e)->{globe.getSphere().setRotate(actPosX);actPosX-=20;});
+		
 		//zoom.setOnAction((ActionEvent e)->{globe.getSphere().setTranslate(zoomValue);zoomValue+=50;});
 
 		globe.getSphere().setVisible(true);
@@ -75,7 +74,6 @@ public class View extends Application {
 
 		primaryStage.show();
 
-		//drawFractale(300,200,200);
 		
 		
 	}
@@ -102,6 +100,11 @@ public class View extends Application {
 		rotate.setAxis(Rotate.Y_AXIS);
 		rotate.setCycleCount(RotateTransition.INDEFINITE);
 		rotate.setInterpolator(Interpolator.LINEAR);
+		PauseButton.setOnAction((ActionEvent e)->{rotate.pause();});
+		playButton.setOnAction((ActionEvent e)-> {rotate.play();});
+		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(2500);});
+
+			
 
 		return rotate;
 	}

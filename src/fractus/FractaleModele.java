@@ -5,9 +5,9 @@ import java.util.Observable;
 
 public class FractaleModele extends Observable {	
 	private Picture pic ;
-	private int resoX = 800 ;
-	private int resoY = 500 ; 
-	int zoom = 120 ;
+	private int resoX = 1500 ;
+	private int resoY = 600	 ; 
+	int zoom = 250 ;
 
 	public FractaleModele() {
 		pic = new Picture(resoX,resoY);
@@ -50,7 +50,7 @@ public class FractaleModele extends Observable {
 				}
 				else
 				{
-					Color color = new Color(0,0,(int)i*255/max_it);
+					Color color = new Color(0,(int)i*255/max_it,0);
 					pic.set(x, y, color);					
 				}    			   			
     		}
@@ -70,6 +70,7 @@ public class FractaleModele extends Observable {
     
     public void setZoom(int zoom) {
     	this.zoom = zoom ;
+    	createMandelBrot();
     }
     public int getZoom() {
     	return zoom;
