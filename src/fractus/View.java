@@ -3,10 +3,13 @@ package fractus;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -68,7 +71,7 @@ public class View extends Application {
 
 		PhongMaterial phongMaterial = new PhongMaterial();
 		//phongMaterial.setDiffuseColor(Color.WHITE);
-		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1000 ,1000,true,true));
+		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1200 ,500,false,false));
 		
 		globe.getSphere().setMaterial(phongMaterial);
 		
@@ -111,9 +114,7 @@ public class View extends Application {
 		rotate.setInterpolator(Interpolator.LINEAR);
 		PauseButton.setOnAction((ActionEvent e)->{rotate.pause();});
 		playButton.setOnAction((ActionEvent e)-> {rotate.play();});
-		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(250);});
-
-			
+		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(250);});			
 
 		return rotate;
 	}
