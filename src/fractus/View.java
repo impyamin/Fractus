@@ -102,7 +102,7 @@ public class View extends Application {
 		rotate.setInterpolator(Interpolator.LINEAR);
 		PauseButton.setOnAction((ActionEvent e)->{rotate.pause();});
 		playButton.setOnAction((ActionEvent e)-> {rotate.play();});
-		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(2500);});
+		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(250);});
 
 			
 
