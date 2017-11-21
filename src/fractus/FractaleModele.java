@@ -76,6 +76,7 @@ public class FractaleModele extends Observable {
     public void incZoom(){
     	zoom +=250;
     	
+    	
     }
     public int getZoom() {
     	return zoom;
