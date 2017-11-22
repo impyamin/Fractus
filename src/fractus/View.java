@@ -44,7 +44,7 @@ public class View extends Application {
 
 	Group group = new Group();
 	//
-	//comprends pô
+	//comprends p��
 	Scene scene = new Scene(group,600,800);
 	//
 	//
@@ -62,6 +62,7 @@ public class View extends Application {
 	Button[] buttons = {zoomButton,pauseButton,playButton};
 	double[] buttonX = {BUT_ZOOM_X,BUT_PAUSE_X,BUT_PLAY_X};
 	final ComboBox comboBox = new ComboBox(options);
+	PhongMaterial phongMaterial = new PhongMaterial();
 
 
 
@@ -102,7 +103,6 @@ public class View extends Application {
 		fracControl.savePicture();
 
 
-		PhongMaterial phongMaterial = new PhongMaterial();
 		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1200 ,500,false,false));
 		//phongMaterial.setDiffuseColor(Color.WHITE);
 
@@ -139,7 +139,7 @@ public class View extends Application {
 		rotate.setInterpolator(Interpolator.LINEAR);
 		pauseButton.setOnAction((ActionEvent e)->{rotate.pause();});
 		playButton.setOnAction((ActionEvent e)-> {rotate.play();});
-		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(250);});			
+		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(25 );fracMod.getPicture();phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));});			
 
 		return rotate;
 	}
