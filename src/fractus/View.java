@@ -48,7 +48,7 @@ public class View extends Application {
 	Scene scene = new Scene(group,600,800);
 	//
 	//
-	Globe globe = new Globe(SPHERE_RADIUS,SPHERE_X,SPHERE_Y);
+	Globe globe = new Globe(SPHERE_RADIUS,SPHERE_X,SPHERE_Y,scene);
 	final Rectangle rectangle = new Rectangle(0,0,RECT_WIDTH,RECT_HEIGHT);
 	Button pauseButton = new Button("||");
 	Button playButton = new Button("|>");
@@ -110,6 +110,7 @@ public class View extends Application {
 		globe.getSphere().setVisible(true);
 		rotateAroundYAxis(globe.getSphere()).play();
 		//zoom.setOnAction((ActionEvent e)->{globe.getSphere().setTranslate(zoomValue);zoomValue+=50;});
+		globe.handleRotationEvents();
 
 		primaryStage.show();
 
@@ -148,7 +149,8 @@ public class View extends Application {
 	{
 		Application.launch(args);
 	}
-
+	
+	
 
 
 }
