@@ -8,6 +8,7 @@ public class FractaleModele extends Observable {
 	private int resoX = 1300 ;
 	private int resoY = 600; 
 	int zoom = 200 ;
+	int max_it = 50;
 
 	public FractaleModele() {
 		pic = new Picture(resoX,resoY);
@@ -18,7 +19,7 @@ public class FractaleModele extends Observable {
     	double x2 = 3.0;
     	double y1 = -1.2;
     	double y2 = 1.2;
-    	int max_it = 50;
+
     	    	
     	double imgX = (x2- x1)*zoom;
     	double imgY = (y2 - y1)*zoom;
@@ -67,6 +68,13 @@ public class FractaleModele extends Observable {
        	setChanged();
     	notifyObservers();
     }   
+    public void setNbIteration(int nbiterations){
+    	max_it=nbiterations;
+    	createMandelBrot();
+    	System.out.println("nombre d'itérations : "+ max_it);
+
+
+    }
     
     public void setZoom(int zoom) {
     	setResolutionX(3);
@@ -85,6 +93,9 @@ public class FractaleModele extends Observable {
     public int getZoom() {
     	return zoom;
     } 
+    public int getNbIteration(){
+    	return max_it;
+    }
     public int getResoX() {
     	return resoX;
     }
@@ -94,5 +105,6 @@ public class FractaleModele extends Observable {
 	public Picture getPicture() {
 		    return pic ;
 	   }
+	
 
 }

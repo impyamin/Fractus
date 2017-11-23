@@ -1,5 +1,11 @@
 package fractus;
 
+
+
+import javax.security.auth.callback.TextInputCallback;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
+
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
@@ -10,6 +16,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
@@ -35,12 +43,6 @@ public class View extends Application {
 	final double BUT_PLAY_X =(RECT_WIDTH)/2-BUTTON_SIZE/2;
 	final double BUT_PAUSE_X =1.75*((RECT_WIDTH)/2-BUTTON_SIZE/2);
 
-	// 
-	//Inutile ?
-	public int actPosX = 0 ;
-	public int zoomValue = 0;
-	//
-	//
 
 	Group group = new Group();
 	//
@@ -67,6 +69,18 @@ public class View extends Application {
 
 
 
+
+	TextField textIter = new TextField();
+	Label textIterWarning = new Label();
+	Label nbIteration = new Label();
+	Label typeFractale = new Label();
+
+
+
+
+
+
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Fractus				|				Tricha-Jolliet 	S3A");
@@ -82,11 +96,20 @@ public class View extends Application {
 		for(int num=0;num<buttonX.length;num++)
 			buttons[num].setLayoutX(buttonX[num]);
 
-
-
+		typeFractale.setText("Type de fractale :");
+		typeFractale.setLayoutY(230);
+		typeFractale.setLayoutX(20);
 		comboBox.setLayoutY(250);
 		comboBox.setLayoutX(20);
-		
+
+		nbIteration.setText("Nombre d'itérations :");
+		nbIteration.setLayoutX(20);
+		nbIteration.setLayoutY(350);
+		textIterWarning.setLayoutX(20);
+		textIterWarning.setLayoutY(400);
+		textIter.setLayoutX(20);
+		textIter.setLayoutY(370);
+
 
 		rectangle.setFill(Color.GREY);
 
@@ -96,6 +119,15 @@ public class View extends Application {
 		group.getChildren().add(playButton);
 		group.getChildren().add(zoomButton);
 		group.getChildren().add(comboBox);
+		group.getChildren().add(nbIteration);
+		group.getChildren().add(textIter);
+		group.getChildren().add(textIterWarning);
+		group.getChildren().add(typeFractale);
+
+
+
+
+
 
 
 		fracMod.createMandelBrot();
@@ -131,6 +163,10 @@ public class View extends Application {
 
 	}*/
 
+	//
+	//
+	// LE NOM DE LA METHODE EST PAS OUF
+
 	private RotateTransition rotateAroundYAxis(Sphere s) {
 		RotateTransition rotate = new RotateTransition(Duration.seconds(25), s);
 		rotate.setFromAngle(360);
@@ -142,6 +178,18 @@ public class View extends Application {
 		playButton.setOnAction((ActionEvent e)-> {rotate.play();});
 		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(25 );fracMod.getPicture();phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));});			
 
+		textIter.setOnAction((ActionEvent e) -> {
+			try{
+				Integer it = Integer.parseInt(textIter.getText());
+				textIterWarning.setText(null);	     
+				fracMod.setNbIteration(it);
+				fracMod.getPicture();
+				phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
+
+			}catch (NumberFormatException ex){
+				textIterWarning.setText("Not an integer!");
+			}
+		});
 		return rotate;
 	}
 
