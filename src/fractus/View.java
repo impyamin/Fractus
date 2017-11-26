@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -73,7 +74,10 @@ public class View extends Application {
 	TextField textIter = new TextField();
 	Label textIterWarning = new Label();
 	Label nbIteration = new Label();
-	Label typeFractale = new Label();
+	Label fractaleType = new Label();
+	Label color = new Label();
+	ColorPicker colorPicker = new ColorPicker();
+	
 
 
 
@@ -96,19 +100,27 @@ public class View extends Application {
 		for(int num=0;num<buttonX.length;num++)
 			buttons[num].setLayoutX(buttonX[num]);
 
-		typeFractale.setText("Type de fractale :");
-		typeFractale.setLayoutY(230);
-		typeFractale.setLayoutX(20);
+		fractaleType.setText("Fractale Type :");
+		fractaleType.setLayoutY(230);
+		fractaleType.setLayoutX(20);
 		comboBox.setLayoutY(250);
 		comboBox.setLayoutX(20);
 
-		nbIteration.setText("Nombre d'itérations :");
+		nbIteration.setText("Iteration number :");
 		nbIteration.setLayoutX(20);
 		nbIteration.setLayoutY(350);
 		textIterWarning.setLayoutX(20);
 		textIterWarning.setLayoutY(400);
 		textIter.setLayoutX(20);
 		textIter.setLayoutY(370);
+		textIter.setText("50");
+		
+		color.setText("Color :");
+		color.setLayoutX(20);
+		color.setLayoutY(430);		
+		colorPicker.setLayoutX(20);
+		colorPicker.setLayoutY(450);
+		colorPicker.setValue(Color.GREEN);
 
 
 		rectangle.setFill(Color.GREY);
@@ -122,7 +134,9 @@ public class View extends Application {
 		group.getChildren().add(nbIteration);
 		group.getChildren().add(textIter);
 		group.getChildren().add(textIterWarning);
-		group.getChildren().add(typeFractale);
+		group.getChildren().add(fractaleType);
+		group.getChildren().add(colorPicker);
+		group.getChildren().add(color);
 
 
 

@@ -34,10 +34,7 @@ public class Globe {
             double dy = (mousePosY - me.getSceneY());
             System.out.println(dx);
             System.out.println(dy);
-            if (me.isPrimaryButtonDown() && sphere.getLayoutY()-sphere.getRadius() < me.getSceneY() 
-        			&& me.getSceneY() < sphere.getLayoutY() + sphere.getRadius() 
-        			&& sphere.getLayoutX()-sphere.getRadius() < me.getSceneX()
-        			&& me.getSceneX()< sphere.getLayoutX()+sphere.getRadius())
+            if (me.isPrimaryButtonDown() && contains(me.getSceneX(), me.getSceneY()))
         	 {
                 rotateX.setAngle(rotateX.getAngle() - 
                     (dy / sphere.getRadius()*2 * 360) * (Math.PI / 180)*1.3);
@@ -49,7 +46,13 @@ public class Globe {
             mousePosY = me.getSceneY();
         });
     }
-	public Sphere getSphere(){
+
+	
+	private boolean contains(double x, double y) {
+		return sphere.getLayoutY()-sphere.getRadius() < y && y < sphere.getLayoutY() + sphere.getRadius() 
+    			&& sphere.getLayoutX()-sphere.getRadius() < x && x < sphere.getLayoutX()+sphere.getRadius()	;
+}
+public Sphere getSphere(){
 		return sphere;
 		
 	}
