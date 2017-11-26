@@ -46,7 +46,7 @@ public class View extends Application {
 
 	final FractaleModele fracMod = new FractaleModele();
 	final FractaleControler fracControl = new FractaleControler(fracMod);
-
+	
 	Group group = new Group();
 	//
 	//comprends p��
@@ -152,12 +152,11 @@ public class View extends Application {
 
 
 		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",1200 ,500,false,false));
-		//phongMaterial.setDiffuseColor(Color.WHITE);
+		phongMaterial.setDiffuseColor(Color.WHITE);
 
 		globe.getSphere().setMaterial(phongMaterial);
 		globe.getSphere().setVisible(true);
 		rotateAroundYAxis(globe.getSphere()).play();
-		//zoom.setOnAction((ActionEvent e)->{globe.getSphere().setTranslate(zoomValue);zoomValue+=50;});
 		globe.handleRotationEvents();
 		
 	    colorPicker.setOnAction((ActionEvent event)->{
@@ -198,7 +197,7 @@ public class View extends Application {
 		rotate.setInterpolator(Interpolator.LINEAR);
 		pauseButton.setOnAction((ActionEvent e)->{rotate.pause();});
 		playButton.setOnAction((ActionEvent e)-> {rotate.play();});
-		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(25 );fracControl.savePicture();phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));});			
+		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(25);fracControl.savePicture();phongMaterial.setDiffuseMap(new Image("file:Fractale.png",0 ,0,false,false));});			
 
 		textIter.setOnAction((ActionEvent e) -> {
 			try{

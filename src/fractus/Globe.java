@@ -4,6 +4,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
+import javafx.scene.image.ImageView;
+
 
 public class Globe {
 	private Scene scene ;
@@ -20,6 +22,7 @@ public class Globe {
 		sphere.setVisible(true);
 		sphere.getTransforms().addAll(rotateX,rotateY);
 		this.scene = scene ;
+
 	}
 	
     public void handleRotationEvents() {
@@ -37,9 +40,9 @@ public class Globe {
             if (me.isPrimaryButtonDown() && contains(me.getSceneX(), me.getSceneY()))
         	 {
                 rotateX.setAngle(rotateX.getAngle() - 
-                    (dy / sphere.getRadius()*2 * 360) * (Math.PI / 180)*1.3);
+                    (dy / sphere.getRadius()*4 * -360) * (Math.PI / 180));
                 rotateY.setAngle(rotateY.getAngle() - 
-                    (dx / sphere.getRadius()*2 * 360) * (Math.PI / 180)*1.3);
+                    (dx / sphere.getRadius()*4 * -360) * (Math.PI / 180));
                 
             }
             mousePosX = me.getSceneX();

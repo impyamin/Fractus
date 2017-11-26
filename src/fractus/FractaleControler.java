@@ -13,6 +13,7 @@ public class FractaleControler {
 	}
 	
 	public void savePicture() {
+		fracModele.createMandelBrot();
 		fracModele.getPicture().save("Fractale.png");
 	}
 
