@@ -44,6 +44,8 @@ public class View extends Application {
 	final double BUT_PLAY_X =(RECT_WIDTH)/2-BUTTON_SIZE/2;
 	final double BUT_PAUSE_X =1.75*((RECT_WIDTH)/2-BUTTON_SIZE/2);
 
+	final FractaleModele fracMod = new FractaleModele();
+	final FractaleControler fracControl = new FractaleControler(fracMod);
 
 	Group group = new Group();
 	//
@@ -56,7 +58,6 @@ public class View extends Application {
 	Button pauseButton = new Button("||");
 	Button playButton = new Button("|>");
 	Button zoomButton = new Button("+");
-	FractaleModele fracMod = new FractaleModele();
 	ObservableList<String> options = 
 			FXCollections.observableArrayList(
 					"Mandelbrot",
@@ -145,7 +146,7 @@ public class View extends Application {
 
 
 		fracMod.createMandelBrot();
-		FractaleControler fracControl = new FractaleControler(fracMod);
+
 		fracControl.savePicture();
 
 
@@ -157,6 +158,12 @@ public class View extends Application {
 		rotateAroundYAxis(globe.getSphere()).play();
 		//zoom.setOnAction((ActionEvent e)->{globe.getSphere().setTranslate(zoomValue);zoomValue+=50;});
 		globe.handleRotationEvents();
+		
+	    colorPicker.setOnAction((ActionEvent event)->{
+                fracMod.setCurrentColor(colorPicker.getValue().getRed(),colorPicker.getValue().getGreen(),colorPicker.getValue().getBlue());
+        		fracControl.savePicture();
+        		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
+        });
 
 		primaryStage.show();
 
@@ -190,7 +197,7 @@ public class View extends Application {
 		rotate.setInterpolator(Interpolator.LINEAR);
 		pauseButton.setOnAction((ActionEvent e)->{rotate.pause();});
 		playButton.setOnAction((ActionEvent e)-> {rotate.play();});
-		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(25 );fracMod.getPicture();phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));});			
+		zoomButton.setOnAction((ActionEvent e)->{fracMod.setZoom(25 );fracControl.savePicture();phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));});			
 
 		textIter.setOnAction((ActionEvent e) -> {
 			try{

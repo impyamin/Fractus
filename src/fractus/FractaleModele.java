@@ -9,6 +9,8 @@ public class FractaleModele extends Observable {
 	private int resoY = 600; 
 	int zoom = 200 ;
 	int max_it = 50;
+	public Color currentColor = Color.GREEN;
+
 
 	public FractaleModele() {
 		pic = new Picture(resoX,resoY);
@@ -46,13 +48,13 @@ public class FractaleModele extends Observable {
     			System.out.println(y);
     			
 				if(i == max_it) {
-					Color color = new Color(0,0,0);
-					pic.set(x,y,color);
+					Color newColor = new Color(0,0,0);
+					pic.set(x,y,newColor);
 				}
 				else
 				{
-					Color color = new Color(0,(int)i*255/max_it,0);
-					pic.set(x, y, color);					
+					Color newColor = new Color(currentColor.getRed(),(int)i*(currentColor.getGreen())/max_it,currentColor.getBlue());
+					pic.set(x, y, newColor);					
 				}    			   			
     		}
     	}
@@ -105,6 +107,17 @@ public class FractaleModele extends Observable {
 	public Picture getPicture() {
 		    return pic ;
 	   }
+
+
+	public void setCurrentColor(double red, double green, double blue) {
+		currentColor=new Color((int)(red*255), (int)(green*255), (int)(blue*255));
+		createMandelBrot();
+		System.out.println(currentColor.getRed()+"."+currentColor.getGreen()+"."+currentColor.getBlue());
+	}
+
+	public Color getCurrentColor() {
+		return currentColor;
+	}
 	
 
 }
