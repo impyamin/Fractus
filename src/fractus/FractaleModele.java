@@ -10,22 +10,22 @@ public class FractaleModele extends Observable {
 	ImageView img = new ImageView();
 	
 	private Picture pic ;
-	private int resoX = 2000 ;
-	private int resoY = 600; 
-	int zoom = 200 ;
-	int max_it = 50;
-	public Color currentColor = Color.GREEN;
+	private int resoX = 1020 ;
+	private int resoY = 480; 
+	private int zoom = 200 ;
+	private int max_it = 50;
+	private double x1 = -2.1;
+	private double x2 = 3.0;
+	private double y1 = -1.2;
+	private double y2 = 1.2;
+	private Color currentColor = Color.GREEN;
 
 
 	public FractaleModele() {
-		createMandelBrot();		
 	}	
 	 
     public void createMandelBrot() {
-    	double x1 = -2.1;
-    	double x2 = 3.0;
-    	double y1 = -1.2;
-    	double y2 = 1.2;
+
 
     	pic = new Picture(resoX,resoY);
     	    	
@@ -52,7 +52,7 @@ public class FractaleModele extends Observable {
     			while((z_r*z_r) + (z_i*z_i) < 4 && i <max_it);
     			
     			System.out.println(y);
-    			if(x>450 && y <300){    				
+  				
 				if(i == max_it) {
 					Color newColor = new Color(0,0,0);
 					pic.set(x,y,newColor);
@@ -63,7 +63,6 @@ public class FractaleModele extends Observable {
 					pic.set(x, y, newColor);
 					
 				}    			   			
-    			}
     			
     		}
     	}
@@ -82,10 +81,6 @@ public class FractaleModele extends Observable {
     }   
     public void setNbIteration(int nbiterations){
     	max_it=nbiterations;
-    	createMandelBrot();
-    	System.out.println("nombre d'it��rations : "+ max_it);
-
-
     }
     
     public void setZoom(int zoom) {
@@ -97,7 +92,6 @@ public class FractaleModele extends Observable {
     
     public void incZoom(){
     	zoom +=250;
-    	createMandelBrot();
     	getPicture();    	
     }
     public int getZoom() {
@@ -119,7 +113,6 @@ public class FractaleModele extends Observable {
 
 	public void setCurrentColor(double red, double green, double blue) {
 		currentColor=new Color((int)(red*255), (int)(green*255), (int)(blue*255));
-		createMandelBrot();
 		System.out.println(currentColor.getRed()+"."+currentColor.getGreen()+"."+currentColor.getBlue());
 	}
 
