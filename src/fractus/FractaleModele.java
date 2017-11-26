@@ -53,7 +53,7 @@ public class FractaleModele extends Observable {
 				}
 				else
 				{
-					Color newColor = new Color(currentColor.getRed(),(int)i*(currentColor.getGreen())/max_it,currentColor.getBlue());
+					Color newColor = new Color((int)i*(currentColor.getRed())/max_it,(int)i*(currentColor.getGreen())/max_it,(int)i*(currentColor.getBlue())/max_it);
 					pic.set(x, y, newColor);					
 				}    			   			
     		}

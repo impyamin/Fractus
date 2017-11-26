@@ -106,6 +106,7 @@ public class View extends Application {
 		fractaleType.setLayoutX(20);
 		comboBox.setLayoutY(250);
 		comboBox.setLayoutX(20);
+		comboBox.setValue(options.toArray()[0]);
 
 		nbIteration.setText("Iteration number :");
 		nbIteration.setLayoutX(20);
@@ -163,7 +164,7 @@ public class View extends Application {
                 fracMod.setCurrentColor(colorPicker.getValue().getRed(),colorPicker.getValue().getGreen(),colorPicker.getValue().getBlue());
         		fracControl.savePicture();
         		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
-        });
+                });
 
 		primaryStage.show();
 
