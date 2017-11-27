@@ -13,7 +13,15 @@ public class FractaleControler {
 	}
 
 	public void savePicture() {
-		fracModele.createMandelBrot();
+		switch (fracModele.getFractalType()) {
+		case "Mandelbrot":
+			fracModele.createMandelBrot();
+			break;
+		case "Option 2" :
+			break;
+		default:
+			break;
+		}
 		fracModele.getPicture().save("Fractale.png");
 	}
 	public int getResoY() {
@@ -27,6 +35,9 @@ public class FractaleControler {
 	}
 	public void setCurrentColor(double red, double green, double blue) {
 		fracModele.setCurrentColor(red, green, blue);		
+	}
+	public void setFractaleType(String type) {
+		fracModele.setFractaleType(type);
 	}
 
 }

@@ -63,7 +63,7 @@ public class View extends Application {
 					);
 	Button[] buttons = {zoomButton,pauseButton,playButton};
 	double[] buttonX = {BUT_ZOOM_X,BUT_PAUSE_X,BUT_PLAY_X};
-	final ComboBox fractaleType = new ComboBox(options);
+	final ComboBox<String> fractaleType = new ComboBox<String>(options);
 	PhongMaterial phongMaterial = new PhongMaterial();
 	
 	final Label textIterWarningLabel = new Label();
@@ -95,7 +95,7 @@ public class View extends Application {
 		fractaleTypeLabel.setLayoutX(ELEMENT_X);
 		fractaleType.setLayoutY(FRACTALE_TYPE_X);
 		fractaleType.setLayoutX(ELEMENT_X);
-		fractaleType.setValue(options.toArray()[0]);
+		fractaleType.setValue((String) options.toArray()[0]);
 
 		nbIterationLabel.setText("Iteration number :");
 		nbIterationLabel.setLayoutX(ELEMENT_X);
@@ -183,8 +183,12 @@ public class View extends Application {
             });
 	    //zoom
 		zoomButton.setOnAction((ActionEvent e)->{fracControl.setZoom(25);fracControl.savePicture();phongMaterial.setDiffuseMap(new Image("file:Fractale.png",0 ,0,false,false));});			
-		//TO DO : FRACTALE TYPE
-	}
+		//TO DO : 
+		fractaleType.setOnAction((ActionEvent e)->{
+		fracControl.setFractaleType(fractaleType.getValue());
+		fracControl.savePicture();
+		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",0 ,0,false,false));});
+		}
 
 	public static void main(String[] args)
 	{

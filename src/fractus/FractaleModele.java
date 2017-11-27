@@ -21,6 +21,8 @@ public class FractaleModele extends Observable {
 	private Color currentColor = Color.GREEN;
 	private int xOffset =0;
 	private int yOffset = 0;
+
+	private String fractalType="Mandelbrot";
 	
 
 	public FractaleModele() {
@@ -47,11 +49,11 @@ public class FractaleModele extends Observable {
     			do
     			{
     				double tmp = z_r ;
-        			z_r = z_r*z_r - z_i*z_i + c_r ;
+        			z_r = Math.pow(z_r,2) - Math.pow(z_i,2) + c_r ;
         			z_i= 2*z_i*tmp + c_i;
         			++i ;
     			}
-    			while((z_r*z_r) + (z_i*z_i) < 4 && i <max_it);
+    			while((Math.pow(z_r,2)) + (Math.pow(z_i,2)) < 4 && i <max_it);
     			
     			
     			System.out.println(y);
@@ -124,6 +126,16 @@ public class FractaleModele extends Observable {
 	public Color getCurrentColor() {
 		return currentColor;
 	}
+
+	public void setFractaleType(String type) {
+		fractalType=type;
+	}
+
+	public String getFractalType() {
+		return fractalType;
+	}
+
+
 	
 
 }
