@@ -19,28 +19,30 @@ public class FractaleModele extends Observable {
 	private double y1 = -1.2;
 	private double y2 = 1.2;
 	private Color currentColor = Color.GREEN;
-
+	private int xOffset =0;
+	private int yOffset = 0;
+	
 
 	public FractaleModele() {
 	}	
 	 
     public void createMandelBrot() {
 
-
+    	//https://stackoverflow.com/questions/14097559/zooming-in-on-mandelbrot-set-fractal-in-java
     	pic = new Picture(resoX,resoY);
     	    	
-    	double imgY = (y2 - y1)*zoom;
-    	double imgX = (x2- x1)*zoom;
+    	//double imgY = (y2 - y1)*zoom;
+    	//double imgX = (x2- x1)*zoom;
     	
-    	for(int x = 0 ; x < imgX;x++)
+    	for(int x = 0 ; x < 1020;x++)
     	{
-    		for(int y = 0; y < imgY ; y++) 
+    		for(int y = 0; y < 480 ; y++) 
     		{
-    			double c_r = x/(double)zoom +x1 ;
-    			double c_i = y/(double)zoom +y1 ;
+    			double c_r = (x+xOffset)/((double)zoom)+x1 ;
+    			double c_i = (y+yOffset)/((double)zoom)+y1 ;
     			double z_r = 0;
     			double z_i = 0;
-    			double i = 0;   			   			
+    			double i = 0;   
     			
     			do
     			{
@@ -50,6 +52,7 @@ public class FractaleModele extends Observable {
         			++i ;
     			}
     			while((z_r*z_r) + (z_i*z_i) < 4 && i <max_it);
+    			
     			
     			System.out.println(y);
   				
@@ -84,9 +87,11 @@ public class FractaleModele extends Observable {
     }
     
     public void setZoom(int zoom) {
-    	setResolutionX(3);
-    	setResolutionY(3);
-    	this.zoom += zoom*15 ;
+    	//setResolutionX(3);
+    	//setResolutionY(3);
+    	this.zoom *=2 ;
+    	yOffset*=2;
+    	xOffset*=2;
     	System.out.println("resolution  :"+ resoX + "   " + resoY);
     }
     
