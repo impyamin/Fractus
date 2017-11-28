@@ -82,6 +82,8 @@ public class View extends Application {
 		primaryStage.setWidth(WINDOW_WIDTH);
 		primaryStage.setScene(scene);
 
+		globe.handleScroll();
+
 		for(Button button : buttons)
 		{
 			button.setMinSize(BUTTON_SIZE,BUTTON_SIZE);
@@ -182,12 +184,18 @@ public class View extends Application {
     		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
             });
 	    //zoom
-		zoomButton.setOnAction((ActionEvent e)->{fracControl.setZoom(25);fracControl.savePicture();phongMaterial.setDiffuseMap(new Image("file:Fractale.png",0 ,0,false,false));});			
+		zoomButton.setOnAction((ActionEvent e)->{
+		fracControl.setZoom(25);
+		fracControl.savePicture();
+		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",0 ,0,false,false));
+		globe.getSphere().setRadius(460);});			
 		//TO DO : 
 		fractaleType.setOnAction((ActionEvent e)->{
 		fracControl.setFractaleType(fractaleType.getValue());
 		fracControl.savePicture();
 		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",0 ,0,false,false));});
+		
+		
 		}
 
 	public static void main(String[] args)

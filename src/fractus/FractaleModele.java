@@ -13,14 +13,14 @@ public class FractaleModele extends Observable {
 	private int resoX = 1020 ;
 	private int resoY = 480; 
 	private int zoom = 200 ;
-	private int max_it = 50;
+	private int max_it = 500;
 	private double x1 = -2.1;
 	private double x2 = 3.0;
 	private double y1 = -1.2;
 	private double y2 = 1.2;
 	private Color currentColor = Color.GREEN;
-	private int xOffset =0;
-	private int yOffset = 0;
+	private int xOffset =10;
+	private int yOffset = 10;
 
 	private String fractalType="Mandelbrot";
 	
@@ -55,8 +55,7 @@ public class FractaleModele extends Observable {
     			}
     			while((Math.pow(z_r,2)) + (Math.pow(z_i,2)) < 4 && i <max_it);
     			
-    			
-    			System.out.println(y);
+    		//	System.out.println(" " ) ; 
   				
 				if(i == max_it) {
 					Color newColor = new Color(0,0,0);
@@ -88,13 +87,13 @@ public class FractaleModele extends Observable {
     	max_it=nbiterations;
     }
     
-    public void setZoom(int zoom) {
+    public void setZoom(int zoomInc) {
     	//setResolutionX(3);
     	//setResolutionY(3);
-    	this.zoom *=2 ;
+    	zoom *=2 ;
     	yOffset*=2;
     	xOffset*=2;
-    	System.out.println("resolution  :"+ resoX + "   " + resoY);
+    	System.out.println("OFFSETS  :"+ xOffset + "   " + yOffset + " zoom : " + zoom);
     }
     
     public void incZoom(){

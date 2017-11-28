@@ -39,5 +39,7 @@ public class FractaleControler {
 	public void setFractaleType(String type) {
 		fracModele.setFractaleType(type);
 	}
+	
+	
 
 }
