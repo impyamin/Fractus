@@ -13,12 +13,13 @@ public class FractaleModele extends Observable {
 	private int resoX = 1020 ;
 	private int resoY = 480; 
 	private int zoom = 200 ;
-	private int max_it = 500;
+	private int max_it = 50;
 	private double x1 = -2.1;
 	private double x2 = 3.0;
 	private double y1 = -1.2;
 	private double y2 = 1.2;
 	private Color currentColor = Color.GREEN;
+	private Color colorInside = Color.BLACK;	
 	private int xOffset =10;
 	private int yOffset = 10;
 
@@ -58,8 +59,8 @@ public class FractaleModele extends Observable {
     		//	System.out.println(" " ) ; 
   				
 				if(i == max_it) {
-					Color newColor = new Color(0,0,0);
-					pic.set(x,y,newColor);
+
+					pic.set(x,y,colorInside);
 				}
 				else
 				{
@@ -119,7 +120,6 @@ public class FractaleModele extends Observable {
 
 	public void setCurrentColor(double red, double green, double blue) {
 		currentColor=new Color((int)(red*255), (int)(green*255), (int)(blue*255));
-		System.out.println(currentColor.getRed()+"."+currentColor.getGreen()+"."+currentColor.getBlue());
 	}
 
 	public Color getCurrentColor() {
@@ -132,6 +132,10 @@ public class FractaleModele extends Observable {
 
 	public String getFractalType() {
 		return fractalType;
+	}
+
+	public void setInsideColor(double red, double green, double blue) {
+		colorInside=new Color((int)(red*255), (int)(green*255), (int)(blue*255));
 	}
 
 

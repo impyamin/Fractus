@@ -39,6 +39,9 @@ public class FractaleControler {
 	public void setFractaleType(String type) {
 		fracModele.setFractaleType(type);
 	}
+	void setInsideColor(double red, double green, double blue) {
+		fracModele.setInsideColor(red, green, blue);			
+	}
 	
 	
 

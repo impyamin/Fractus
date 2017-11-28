@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
@@ -39,9 +40,9 @@ public class View extends Application {
 	final double BUT_PAUSE_X =1.75*((RECT_WIDTH)/2-BUTTON_SIZE/2);
 	final double ELEMENT_SIZE=20.;
 	final double ELEMENT_X=20.;
-	final double FRACTALE_TYPE_X=250.;
-	final double NB_ITERATION_X=370.;
-	final double COLOR_PICKER_X=450;
+	final double FRACTALE_TYPE_Y=250.;
+	final double NB_ITERATION_Y=370.;
+	final double COLOR_PICKER_Y=450;
 	final double SHIFT=10.;
 	
 	
@@ -70,8 +71,11 @@ public class View extends Application {
 	final Label nbIterationLabel = new Label();
 	final Label fractaleTypeLabel = new Label();
 	final Label colorLabel = new Label();
+	final Label colorInsideLabel = new Label();
 	TextField nbIteration = new TextField();
 	ColorPicker colorPicker = new ColorPicker();
+	ColorPicker colorInsidePicker = new ColorPicker();
+	
 	
 	
 
@@ -93,27 +97,34 @@ public class View extends Application {
 			buttons[num].setLayoutX(buttonX[num]);
 
 		fractaleTypeLabel.setText("Fractale Type :");
-		fractaleTypeLabel.setLayoutY(FRACTALE_TYPE_X-ELEMENT_SIZE);
+		fractaleTypeLabel.setLayoutY(FRACTALE_TYPE_Y-ELEMENT_SIZE);
 		fractaleTypeLabel.setLayoutX(ELEMENT_X);
-		fractaleType.setLayoutY(FRACTALE_TYPE_X);
+		fractaleType.setLayoutY(FRACTALE_TYPE_Y);
 		fractaleType.setLayoutX(ELEMENT_X);
 		fractaleType.setValue((String) options.toArray()[0]);
 
 		nbIterationLabel.setText("Iteration number :");
 		nbIterationLabel.setLayoutX(ELEMENT_X);
-		nbIterationLabel.setLayoutY(NB_ITERATION_X-ELEMENT_SIZE);
+		nbIterationLabel.setLayoutY(NB_ITERATION_Y-ELEMENT_SIZE);
 		nbIteration.setLayoutX(ELEMENT_X);
-		nbIteration.setLayoutY(NB_ITERATION_X);
+		nbIteration.setLayoutY(NB_ITERATION_Y);
 		nbIteration.setText("50");
 		textIterWarningLabel.setLayoutX(ELEMENT_X);
-		textIterWarningLabel.setLayoutY(NB_ITERATION_X+ELEMENT_SIZE+SHIFT);
+		textIterWarningLabel.setLayoutY(NB_ITERATION_Y+ELEMENT_SIZE+SHIFT);
 		
 		colorLabel.setText("Color :");
 		colorLabel.setLayoutX(ELEMENT_X);
-		colorLabel.setLayoutY(COLOR_PICKER_X-ELEMENT_SIZE);		
+		colorLabel.setLayoutY(COLOR_PICKER_Y-ELEMENT_SIZE);		
 		colorPicker.setLayoutX(ELEMENT_X);
-		colorPicker.setLayoutY(COLOR_PICKER_X);
+		colorPicker.setLayoutY(COLOR_PICKER_Y);
 		colorPicker.setValue(Color.GREEN);
+		
+		colorInsideLabel.setText("Color inside :");
+		colorInsideLabel.setLayoutX(ELEMENT_X);
+		colorInsideLabel.setLayoutY(COLOR_PICKER_Y+285-ELEMENT_SIZE);		
+		colorInsidePicker.setLayoutX(ELEMENT_X);
+		colorInsidePicker.setLayoutY(COLOR_PICKER_Y+285);
+		colorInsidePicker.setValue(Color.BLACK);
 
 
 		rectangle.setFill(Color.GREY);
@@ -130,6 +141,8 @@ public class View extends Application {
 		group.getChildren().add(fractaleTypeLabel);
 		group.getChildren().add(colorPicker);
 		group.getChildren().add(colorLabel); 
+		group.getChildren().add(colorInsidePicker);
+		group.getChildren().add(colorInsideLabel); 
 
 
 		fracControl.savePicture();
@@ -180,6 +193,11 @@ public class View extends Application {
 		//Color
 	    colorPicker.setOnAction((ActionEvent event)->{
             fracControl.setCurrentColor(colorPicker.getValue().getRed(),colorPicker.getValue().getGreen(),colorPicker.getValue().getBlue());
+    		fracControl.savePicture();
+    		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
+            });
+	    	colorInsidePicker.setOnAction((ActionEvent event)->{
+            fracControl.setInsideColor(colorInsidePicker.getValue().getRed(),colorInsidePicker.getValue().getGreen(),colorInsidePicker.getValue().getBlue());
     		fracControl.savePicture();
     		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
             });
