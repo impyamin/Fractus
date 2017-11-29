@@ -14,6 +14,7 @@ public class FractaleModele extends Observable {
 	private int resoY = 480; 
 	private int zoom = 200 ;
 	private int max_it = 50;
+	private int x,y;
 	private double x1 = -2.1;
 	private double x2 = 3.0;
 	private double y1 = -1.2;
@@ -37,9 +38,9 @@ public class FractaleModele extends Observable {
     	//double imgY = (y2 - y1)*zoom;
     	//double imgX = (x2- x1)*zoom;
     	
-    	for(int x = 0 ; x < 1020;x++)
+    	for( x = 0 ; x < 1020;x++)
     	{
-    		for(int y = 0; y < 480 ; y++) 
+    		for( y = 0; y < 480 ; y++) 
     		{
     			double c_r = (x+xOffset)/((double)zoom)+x1 ;
     			double c_i = (y+yOffset)/((double)zoom)+y1 ;
@@ -88,12 +89,13 @@ public class FractaleModele extends Observable {
     	max_it=nbiterations;
     }
     
-    public void setZoom(int zoomInc) {
-    	//setResolutionX(3);
-    	//setResolutionY(3);
-    	zoom *=2 ;
-    	yOffset*=2;
-    	xOffset*=2;
+    public void setZoom(int zoomX,int zoomY) {
+    	
+    	zoom *=1.6 ;
+    	//yOffset*=2;
+    	//xOffset*=2;
+    	x = zoomX;
+    	y = zoomY;
     	System.out.println("OFFSETS  :"+ xOffset + "   " + yOffset + " zoom : " + zoom);
     }
     

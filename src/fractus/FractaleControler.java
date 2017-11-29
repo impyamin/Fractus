@@ -7,9 +7,9 @@ public class FractaleControler {
 
 
 	}
-	public void setZoom(int zoom)
+	public void setZoom(int zoomX,int zoomY)
 	{
-		fracModele.setZoom(zoom);
+		fracModele.setZoom(zoomX,zoomY);
 	}
 
 	public void savePicture() {

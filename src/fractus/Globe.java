@@ -66,10 +66,12 @@ public class Globe {
 	public void handleScroll() {
 		System.out.println("EZZZZ");
 		sphere.setOnScroll((ScrollEvent event)-> {			
-			fracControl.setZoom(25);
+			fracControl.setZoom((int)event.getDeltaX(),(int)event.getDeltaY());
+			System.out.println("EVENTTTTT " + event.getSceneX());
 			fracControl.savePicture();
 			phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
 			sphere.setMaterial(phongMaterial);
+			
 		});
 	}
 

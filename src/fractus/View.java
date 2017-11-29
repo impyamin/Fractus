@@ -203,7 +203,7 @@ public class View extends Application {
             });
 	    //zoom
 		zoomButton.setOnAction((ActionEvent e)->{
-		fracControl.setZoom(25);
+		fracControl.setZoom(0,0);
 		fracControl.savePicture();
 		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",0 ,0,false,false));
 		globe.getSphere().setRadius(460);});			
