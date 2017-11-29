@@ -8,13 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Rectangle;
@@ -31,25 +29,26 @@ public class View extends Application {
 	final double RECT_HEIGHT = WINDOW_HEIGHT;
 	final double RECT_WIDTH = WINDOW_WIDTH/5;
 	final double BUTTON_SIZE = RECT_WIDTH/6;
-	final double BUTTON_Y = 150.;
+	final double BUTTON_Y = 100.;
 	final double SPHERE_RADIUS = 400.; 
 	final double SPHERE_X = RECT_WIDTH+(WINDOW_WIDTH-RECT_WIDTH)/2;
 	final double SPHERE_Y = WINDOW_WIDTH/2;
 	final double BUT_ZOOM_X =0.25*((RECT_WIDTH)/2-BUTTON_SIZE/2);
 	final double BUT_PLAY_X =(RECT_WIDTH)/2-BUTTON_SIZE/2;
 	final double BUT_PAUSE_X =1.75*((RECT_WIDTH)/2-BUTTON_SIZE/2);
-	final double ELEMENT_SIZE=20.;
+	final double ELEMENT_HEIGHT=20.;
 	final double ELEMENT_X=20.;
-	final double FRACTALE_TYPE_Y=250.;
-	final double NB_ITERATION_Y=370.;
-	final double COLOR_PICKER_Y=450;
+	final double FRACTALE_TYPE_Y=190.;
+	final double NB_ITERATION_Y=270.;
+	final double COLOR_PICKER_Y=350;
+	final double COLOR_PICKER_HEIGHT = 285.;
 	final double SHIFT=10.;
-	
-	
+
+
 
 
 	final FractaleControler fracControl = new FractaleControler(new FractaleModele());
-	
+
 	Group group = new Group();
 	Scene scene = new Scene(group,600,800);
 	Globe globe = new Globe(SPHERE_RADIUS,SPHERE_X,SPHERE_Y,scene,fracControl.getImage());
@@ -66,7 +65,7 @@ public class View extends Application {
 	double[] buttonX = {BUT_ZOOM_X,BUT_PAUSE_X,BUT_PLAY_X};
 	final ComboBox<String> fractaleType = new ComboBox<String>(options);
 	PhongMaterial phongMaterial = new PhongMaterial();
-	
+
 	final Label textIterWarningLabel = new Label();
 	final Label nbIterationLabel = new Label();
 	final Label fractaleTypeLabel = new Label();
@@ -75,9 +74,10 @@ public class View extends Application {
 	TextField nbIteration = new TextField();
 	ColorPicker colorPicker = new ColorPicker();
 	ColorPicker colorInsidePicker = new ColorPicker();
-	
-	
-	
+	Button resetButton = new Button("Cancel");
+
+
+
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -97,7 +97,7 @@ public class View extends Application {
 			buttons[num].setLayoutX(buttonX[num]);
 
 		fractaleTypeLabel.setText("Fractale Type :");
-		fractaleTypeLabel.setLayoutY(FRACTALE_TYPE_Y-ELEMENT_SIZE);
+		fractaleTypeLabel.setLayoutY(FRACTALE_TYPE_Y-ELEMENT_HEIGHT);
 		fractaleTypeLabel.setLayoutX(ELEMENT_X);
 		fractaleType.setLayoutY(FRACTALE_TYPE_Y);
 		fractaleType.setLayoutX(ELEMENT_X);
@@ -105,26 +105,29 @@ public class View extends Application {
 
 		nbIterationLabel.setText("Iteration number :");
 		nbIterationLabel.setLayoutX(ELEMENT_X);
-		nbIterationLabel.setLayoutY(NB_ITERATION_Y-ELEMENT_SIZE);
+		nbIterationLabel.setLayoutY(NB_ITERATION_Y-ELEMENT_HEIGHT);
 		nbIteration.setLayoutX(ELEMENT_X);
 		nbIteration.setLayoutY(NB_ITERATION_Y);
 		nbIteration.setText("50");
 		textIterWarningLabel.setLayoutX(ELEMENT_X);
-		textIterWarningLabel.setLayoutY(NB_ITERATION_Y+ELEMENT_SIZE+SHIFT);
-		
+		textIterWarningLabel.setLayoutY(NB_ITERATION_Y+ELEMENT_HEIGHT+SHIFT);
+
 		colorLabel.setText("Color :");
 		colorLabel.setLayoutX(ELEMENT_X);
-		colorLabel.setLayoutY(COLOR_PICKER_Y-ELEMENT_SIZE);		
+		colorLabel.setLayoutY(COLOR_PICKER_Y-ELEMENT_HEIGHT);		
 		colorPicker.setLayoutX(ELEMENT_X);
 		colorPicker.setLayoutY(COLOR_PICKER_Y);
 		colorPicker.setValue(Color.GREEN);
-		
+
 		colorInsideLabel.setText("Color inside :");
 		colorInsideLabel.setLayoutX(ELEMENT_X);
-		colorInsideLabel.setLayoutY(COLOR_PICKER_Y+285-ELEMENT_SIZE);		
+		colorInsideLabel.setLayoutY(COLOR_PICKER_Y+COLOR_PICKER_HEIGHT-ELEMENT_HEIGHT);		
 		colorInsidePicker.setLayoutX(ELEMENT_X);
-		colorInsidePicker.setLayoutY(COLOR_PICKER_Y+285);
+		colorInsidePicker.setLayoutY(COLOR_PICKER_Y+COLOR_PICKER_HEIGHT);
 		colorInsidePicker.setValue(Color.BLACK);
+
+		resetButton.setLayoutX(ELEMENT_X);
+		resetButton.setLayoutY(COLOR_PICKER_Y+2*COLOR_PICKER_HEIGHT+4*SHIFT);
 
 
 		rectangle.setFill(Color.GREY);
@@ -143,6 +146,7 @@ public class View extends Application {
 		group.getChildren().add(colorLabel); 
 		group.getChildren().add(colorInsidePicker);
 		group.getChildren().add(colorInsideLabel); 
+		group.getChildren().add(resetButton);
 
 		phongMaterial.setDiffuseMap(fracControl.getImage());
 
@@ -150,7 +154,7 @@ public class View extends Application {
 		globe.getSphere().setMaterial(phongMaterial);
 		rotateAroundYAxis(globe.getSphere()).play();
 		globe.handleRotationEvents();
-		
+
 		actionEventManagement();
 
 		primaryStage.show();
@@ -171,7 +175,7 @@ public class View extends Application {
 
 		return rotate;
 	}
-	
+
 	private void actionEventManagement(){
 		//Iteration's number 
 		nbIteration.setOnAction((ActionEvent e) -> {
@@ -185,31 +189,39 @@ public class View extends Application {
 				textIterWarningLabel.setText("Not an integer!");
 			}
 		});
-		//Color
-	    colorPicker.setOnAction((ActionEvent event)->{
-            fracControl.setCurrentColor(colorPicker.getValue());
-    		phongMaterial.setDiffuseMap(fracControl.getImage());
-            });
-	    	colorInsidePicker.setOnAction((ActionEvent event)->{
-            fracControl.setInsideColor(colorInsidePicker.getValue());
-    		phongMaterial.setDiffuseMap(fracControl.getImage());
-            });
-	    //zoom
+		//color
+		colorPicker.setOnAction((ActionEvent event)->{
+			fracControl.setCurrentColor(colorPicker.getValue());
+			phongMaterial.setDiffuseMap(fracControl.getImage());
+		});
+		colorInsidePicker.setOnAction((ActionEvent event)->{
+			fracControl.setInsideColor(colorInsidePicker.getValue());
+			phongMaterial.setDiffuseMap(fracControl.getImage());
+		});
+		//zoom
 		zoomButton.setOnAction((ActionEvent e)->{
-		fracControl.setZoom(0,0);
-		phongMaterial.setDiffuseMap(fracControl.getImage());
-		globe.getSphere().setRadius(460);});			
-		// : 
+			fracControl.setZoom(0,0);
+			phongMaterial.setDiffuseMap(fracControl.getImage());
+			globe.getSphere().setRadius(460);
+			});			
+		// fractal type
 		fractaleType.setOnAction((ActionEvent e)->{
-		fracControl.setFractaleType(fractaleType.getValue());
-		phongMaterial.setDiffuseMap(fracControl.getImage());});
+			fracControl.setFractaleType(fractaleType.getValue());
+			phongMaterial.setDiffuseMap(fracControl.getImage());
+			});
+		// reset
+		resetButton.setOnAction((ActionEvent e )->{
+			fracControl.reset();
+			phongMaterial.setDiffuseMap(fracControl.getImage());
+		});
 		
-		
-		}
+
+
+	}
 
 	public static void main(String[] args)
 	{
 		Application.launch(args);
 	}
-	
+
 }

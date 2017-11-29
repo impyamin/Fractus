@@ -3,18 +3,14 @@ package fractus;
 
 
 import java.util.Observable;
-
-import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
 
 public class FractaleModele extends Observable {	
-	ImageView img = new ImageView();
 
-	private Picture pic ;
-	private int resoX = 1020 ;
-	private int resoY = 480; 
+	private int resoY = 500; 
+	private int resoX = 2*resoY ;
 	private int zoom = 200 ;
 	private int max_it = 50;
 	private int x,y;
@@ -40,9 +36,9 @@ public class FractaleModele extends Observable {
 		//https://stackoverflow.com/questions/14097559/zooming-in-on-mandelbrot-set-fractal-in-java
 
 
-		for(int x = 0 ; x < 1020;x++)
+		for( x = 0 ; x < resoX;x++)
 		{
-			for(int y = 0; y < 480 ; y++) 
+			for( y = 0; y < resoY ; y++) 
 			{
 				double c_r = (x+xOffset)/((double)zoom)+x1 ;
 				double c_i = (y+yOffset)/((double)zoom)+y1 ;
@@ -60,14 +56,13 @@ public class FractaleModele extends Observable {
 				while((Math.pow(z_r,2)) + (Math.pow(z_i,2)) < 4 && i <max_it);
 
 
-				if(i == max_it) {
-
+				if(i == max_it) 
 					image.getPixelWriter().setColor(x,y,colorInside);
-				}
+				
 				else
 				{
-
-					image.getPixelWriter().setColor(x, y,currentColor);
+					Color newColor = new Color(i*(currentColor.getRed())/max_it,i*(currentColor.getGreen())/max_it,i*(currentColor.getBlue())/max_it,1);					
+					image.getPixelWriter().setColor(x, y,newColor);
 
 				}    			   			
 
@@ -138,8 +133,20 @@ public class FractaleModele extends Observable {
 	}
 
 	public double getResoX() {
-		// TODO Auto-generated method stub
 		return resoX;
+	}
+
+	public void reset() {
+		resoY = 480; 
+		zoom = 200 ;
+		max_it = 50;
+		x1 = -2.1;
+		y1 = -1.2;
+		y2 = 1.2;
+		currentColor = Color.GREEN;
+		colorInside = Color.BLACK;	
+		xOffset =10;
+		yOffset = 10;		
 	}
 
 

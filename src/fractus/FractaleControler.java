@@ -51,6 +51,9 @@ public class FractaleControler {
 		}
 		return fracModele.getImage();
 	}
+	public void reset() {
+		fracModele.reset();
+	}
 
 	
 	
