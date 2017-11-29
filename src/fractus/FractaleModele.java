@@ -2,7 +2,10 @@ package fractus;
 
 
 
+import java.io.PipedReader;
 import java.util.Observable;
+
+import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -64,12 +67,9 @@ public class FractaleModele extends Observable {
 					Color newColor = new Color(i*(currentColor.getRed())/max_it,i*(currentColor.getGreen())/max_it,i*(currentColor.getBlue())/max_it,1);					
 					image.getPixelWriter().setColor(x, y,newColor);
 
-				}    			   			
-
+				}  			   			
 			}
 		}
-
-
 	}
 
 
@@ -91,6 +91,8 @@ public class FractaleModele extends Observable {
 		zoom *=1.6 ;
 		x = zoomX;
 		y=zoomY;
+		//PixelReader pixrd = image.getPixelReader();
+		//image = new WritableImage(pixrd,10,10,resoX,resoY);
 	}
 
 
@@ -116,6 +118,7 @@ public class FractaleModele extends Observable {
 
 	public WritableImage getImage() {
 		return image;
+		
 	}
 
 	public void createOtherFractale() {
