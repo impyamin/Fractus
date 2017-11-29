@@ -1,5 +1,9 @@
 package fractus;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
+
 public class FractaleControler {
 	FractaleModele fracModele ;
 	public FractaleControler(FractaleModele modele) {	
@@ -12,36 +16,42 @@ public class FractaleControler {
 		fracModele.setZoom(zoomX,zoomY);
 	}
 
-	public void savePicture() {
-		switch (fracModele.getFractalType()) {
-		case "Mandelbrot":
-			fracModele.createMandelBrot();
-			break;
-		case "Option 2" :
-			break;
-		default:
-			break;
-		}
-		fracModele.getPicture().save("Fractale.png");
-	}
-	public int getResoY() {
+
+	public double getResoY() {
 		return fracModele.getResoY();
 	}
-	public int getResoX() {
+	public double getResoX() {
 		return fracModele.getResoX();
 	}
 	public void setNbIteration(Integer it) {
 		fracModele.setNbIteration(it);		
 	}
-	public void setCurrentColor(double red, double green, double blue) {
-		fracModele.setCurrentColor(red, green, blue);		
-	}
+
 	public void setFractaleType(String type) {
 		fracModele.setFractaleType(type);
 	}
-	void setInsideColor(double red, double green, double blue) {
-		fracModele.setInsideColor(red, green, blue);			
+
+	public void setInsideColor(Color value) {
+		fracModele.setInsideColor(value);
 	}
+	public void setCurrentColor(Color value) {
+		fracModele.setCurrentColor(value);		
+		
+	}
+	public WritableImage getImage() {
+		switch (fracModele.getFractalType()) {
+		case "Mandelbrot":
+			fracModele.createMandelBrot();
+			break;
+		case "Option 2" :
+			fracModele.createOtherFractale();
+			break;
+		default:
+			break;
+		}
+		return fracModele.getImage();
+	}
+
 	
 	
 

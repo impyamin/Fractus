@@ -47,12 +47,12 @@ public class View extends Application {
 	
 	
 
-	final FractaleModele fracMod = new FractaleModele();
-	final FractaleControler fracControl = new FractaleControler(fracMod);
+
+	final FractaleControler fracControl = new FractaleControler(new FractaleModele());
 	
 	Group group = new Group();
 	Scene scene = new Scene(group,600,800);
-	Globe globe = new Globe(SPHERE_RADIUS,SPHERE_X,SPHERE_Y,scene);
+	Globe globe = new Globe(SPHERE_RADIUS,SPHERE_X,SPHERE_Y,scene,fracControl.getImage());
 	final Rectangle rectangle = new Rectangle(0,0,RECT_WIDTH,RECT_HEIGHT);
 	Button pauseButton = new Button("||");
 	Button playButton = new Button("|>");
@@ -144,11 +144,7 @@ public class View extends Application {
 		group.getChildren().add(colorInsidePicker);
 		group.getChildren().add(colorInsideLabel); 
 
-
-		fracControl.savePicture();
-
-
-		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",fracControl.getResoX() ,fracControl.getResoY(),false,false));
+		phongMaterial.setDiffuseMap(fracControl.getImage());
 
 
 		globe.getSphere().setMaterial(phongMaterial);
@@ -183,8 +179,7 @@ public class View extends Application {
 				Integer it = Integer.parseInt(nbIteration.getText());
 				textIterWarningLabel.setText(null);	     
 				fracControl.setNbIteration(it);
-				fracControl.savePicture();
-				phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
+				phongMaterial.setDiffuseMap(fracControl.getImage());
 
 			}catch (NumberFormatException ex){
 				textIterWarningLabel.setText("Not an integer!");
@@ -192,26 +187,22 @@ public class View extends Application {
 		});
 		//Color
 	    colorPicker.setOnAction((ActionEvent event)->{
-            fracControl.setCurrentColor(colorPicker.getValue().getRed(),colorPicker.getValue().getGreen(),colorPicker.getValue().getBlue());
-    		fracControl.savePicture();
-    		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
+            fracControl.setCurrentColor(colorPicker.getValue());
+    		phongMaterial.setDiffuseMap(fracControl.getImage());
             });
 	    	colorInsidePicker.setOnAction((ActionEvent event)->{
-            fracControl.setInsideColor(colorInsidePicker.getValue().getRed(),colorInsidePicker.getValue().getGreen(),colorInsidePicker.getValue().getBlue());
-    		fracControl.savePicture();
-    		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
+            fracControl.setInsideColor(colorInsidePicker.getValue());
+    		phongMaterial.setDiffuseMap(fracControl.getImage());
             });
 	    //zoom
 		zoomButton.setOnAction((ActionEvent e)->{
 		fracControl.setZoom(0,0);
-		fracControl.savePicture();
-		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",0 ,0,false,false));
+		phongMaterial.setDiffuseMap(fracControl.getImage());
 		globe.getSphere().setRadius(460);});			
-		//TO DO : 
+		// : 
 		fractaleType.setOnAction((ActionEvent e)->{
 		fracControl.setFractaleType(fractaleType.getValue());
-		fracControl.savePicture();
-		phongMaterial.setDiffuseMap(new Image("file:Fractale.png",0 ,0,false,false));});
+		phongMaterial.setDiffuseMap(fracControl.getImage());});
 		
 		
 		}

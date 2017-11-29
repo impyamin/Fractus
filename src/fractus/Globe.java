@@ -11,6 +11,7 @@ import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 
 
 public class Globe {
@@ -22,7 +23,7 @@ public class Globe {
 	FractaleModele fracMod = new FractaleModele();
 	FractaleControler fracControl= new FractaleControler(fracMod);
 	PhongMaterial phongMaterial = new PhongMaterial();
-	public Globe(double radius, double defposX, double defposY, Scene scene){
+	public Globe(double radius, double defposX, double defposY, Scene scene,WritableImage image){
 
 		sphere=new Sphere(radius);
 		sphere.setLayoutX(defposX);
@@ -30,6 +31,8 @@ public class Globe {
 		sphere.setVisible(true);
 		sphere.getTransforms().addAll(rotateX,rotateY);
 		this.scene = scene ;
+		phongMaterial.setDiffuseMap(image);
+		sphere.setMaterial(phongMaterial);
 	}
 
 	public void handleRotationEvents() {
@@ -68,8 +71,7 @@ public class Globe {
 		sphere.setOnScroll((ScrollEvent event)-> {			
 			fracControl.setZoom((int)event.getDeltaX(),(int)event.getDeltaY());
 			System.out.println("EVENTTTTT " + event.getSceneX());
-			fracControl.savePicture();
-			phongMaterial.setDiffuseMap(new Image("file:Fractale.png",8000 ,8000,false,false));
+			phongMaterial.setDiffuseMap(fracControl.getImage());
 			sphere.setMaterial(phongMaterial);
 			
 		});
