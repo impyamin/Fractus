@@ -1,5 +1,8 @@
 package fractus;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
@@ -22,7 +25,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-public class View extends Application {
+public class FractaleView implements Observer {
 
 	final double WINDOW_HEIGHT = 1920.;
 	final double WINDOW_WIDTH = 1080.;
@@ -45,13 +48,12 @@ public class View extends Application {
 	final double SHIFT=10.;
 
 
+	FractaleControler fracControl;
+	Globe globe;
 
-
-	final FractaleControler fracControl = new FractaleControler(new FractaleModele());
 
 	Group group = new Group();
 	Scene scene = new Scene(group,600,800);
-	Globe globe = new Globe(SPHERE_RADIUS,SPHERE_X,SPHERE_Y,scene,fracControl.getImage());
 	final Rectangle rectangle = new Rectangle(0,0,RECT_WIDTH,RECT_HEIGHT);
 	Button pauseButton = new Button("||");
 	Button playButton = new Button("|>");
@@ -76,11 +78,11 @@ public class View extends Application {
 	ColorPicker colorInsidePicker = new ColorPicker();
 	Button resetButton = new Button("Cancel");
 
+	public FractaleView(FractaleControler fracControl, Stage primaryStage) {
+		globe = new Globe(SPHERE_RADIUS,SPHERE_X,SPHERE_Y,scene,fracControl.getImage());
 
+		this.fracControl=fracControl;
 
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Fractus				|				Tricha-Jolliet 	S3A");
 		primaryStage.setHeight(WINDOW_HEIGHT);
 		primaryStage.setWidth(WINDOW_WIDTH);
@@ -102,13 +104,12 @@ public class View extends Application {
 		fractaleType.setLayoutY(FRACTALE_TYPE_Y);
 		fractaleType.setLayoutX(ELEMENT_X);
 		fractaleType.setValue((String) options.toArray()[0]);
-
 		nbIterationLabel.setText("Iteration number :");
 		nbIterationLabel.setLayoutX(ELEMENT_X);
 		nbIterationLabel.setLayoutY(NB_ITERATION_Y-ELEMENT_HEIGHT);
 		nbIteration.setLayoutX(ELEMENT_X);
 		nbIteration.setLayoutY(NB_ITERATION_Y);
-		nbIteration.setText("50");
+		nbIteration.setText(String.valueOf(fracControl.getNbIteration()));
 		textIterWarningLabel.setLayoutX(ELEMENT_X);
 		textIterWarningLabel.setLayoutY(NB_ITERATION_Y+ELEMENT_HEIGHT+SHIFT);
 
@@ -117,14 +118,14 @@ public class View extends Application {
 		colorLabel.setLayoutY(COLOR_PICKER_Y-ELEMENT_HEIGHT);		
 		colorPicker.setLayoutX(ELEMENT_X);
 		colorPicker.setLayoutY(COLOR_PICKER_Y);
-		colorPicker.setValue(Color.GREEN);
+		colorPicker.setValue(fracControl.getCurrentColor());
 
 		colorInsideLabel.setText("Color inside :");
 		colorInsideLabel.setLayoutX(ELEMENT_X);
 		colorInsideLabel.setLayoutY(COLOR_PICKER_Y+COLOR_PICKER_HEIGHT-ELEMENT_HEIGHT);		
 		colorInsidePicker.setLayoutX(ELEMENT_X);
 		colorInsidePicker.setLayoutY(COLOR_PICKER_Y+COLOR_PICKER_HEIGHT);
-		colorInsidePicker.setValue(Color.BLACK);
+		colorInsidePicker.setValue(fracControl.getColorInside());
 
 		resetButton.setLayoutX(ELEMENT_X);
 		resetButton.setLayoutY(COLOR_PICKER_Y+2*COLOR_PICKER_HEIGHT+4*SHIFT);
@@ -183,7 +184,6 @@ public class View extends Application {
 				Integer it = Integer.parseInt(nbIteration.getText());
 				textIterWarningLabel.setText(null);	     
 				fracControl.setNbIteration(it);
-				phongMaterial.setDiffuseMap(fracControl.getImage());
 
 			}catch (NumberFormatException ex){
 				textIterWarningLabel.setText("Not an integer!");
@@ -192,36 +192,39 @@ public class View extends Application {
 		//color
 		colorPicker.setOnAction((ActionEvent event)->{
 			fracControl.setCurrentColor(colorPicker.getValue());
-			phongMaterial.setDiffuseMap(fracControl.getImage());
 		});
 		colorInsidePicker.setOnAction((ActionEvent event)->{
 			fracControl.setInsideColor(colorInsidePicker.getValue());
-			phongMaterial.setDiffuseMap(fracControl.getImage());
 		});
 		//zoom
 		zoomButton.setOnAction((ActionEvent e)->{
 			fracControl.setZoom(0,0);
-			phongMaterial.setDiffuseMap(fracControl.getImage());
 			globe.getSphere().setRadius(460);
-			});			
+		});			
 		// fractal type
 		fractaleType.setOnAction((ActionEvent e)->{
 			fracControl.setFractaleType(fractaleType.getValue());
-			phongMaterial.setDiffuseMap(fracControl.getImage());
-			});
+		});
 		// reset
 		resetButton.setOnAction((ActionEvent e )->{
 			fracControl.reset();
-			phongMaterial.setDiffuseMap(fracControl.getImage());
 		});
-		
+
 
 
 	}
 
-	public static void main(String[] args)
-	{
-		Application.launch(args);
+
+
+
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		System.out.println("update !");
+		phongMaterial.setDiffuseMap(fracControl.getImage());
 	}
+
+
+
 
 }

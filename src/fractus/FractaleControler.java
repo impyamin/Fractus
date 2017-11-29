@@ -18,10 +18,10 @@ public class FractaleControler {
 
 
 	public double getResoY() {
-		return fracModele.getResoY();
+		return fracModele.getResolutionY();
 	}
 	public double getResoX() {
-		return fracModele.getResoX();
+		return fracModele.getResolutionX();
 	}
 	public void setNbIteration(Integer it) {
 		fracModele.setNbIteration(it);		
@@ -53,6 +53,15 @@ public class FractaleControler {
 	}
 	public void reset() {
 		fracModele.reset();
+	}
+	public Color getCurrentColor() {
+		return fracModele.getCurrentColor();
+	}
+	public Color getColorInside() {
+		return fracModele.getColorInside();
+	}
+	public int getNbIteration() {
+		return fracModele.getNbIteration();
 	}
 
 	
