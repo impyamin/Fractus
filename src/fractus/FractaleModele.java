@@ -38,7 +38,11 @@ public class FractaleModele extends Observable {
 	public void createMandelBrot() {
 
 		//https://stackoverflow.com/questions/14097559/zooming-in-on-mandelbrot-set-fractal-in-java
-
+		long debut = System.currentTimeMillis();
+		 System.out.println("createMandelbrot");
+		 
+		/* new Thread(new Runnable() {
+			    @Override public void run() {*/
 
 		for( x = 0 ; x < resoX;x++)
 		{
@@ -65,13 +69,18 @@ public class FractaleModele extends Observable {
 
 				else
 				{
-					Color newColor = new Color((i*1+Math.PI/10)*(currentColor.getRed())/max_it,(i*1+Math.PI/10)*(currentColor.getGreen())/max_it,(i*1.1)*(currentColor.getBlue())/max_it,1);	
+					Color newColor = new Color(i*(currentColor.getRed())/max_it,i*(currentColor.getGreen())/max_it,i*(currentColor.getBlue())/max_it,1);	
 					
 					image.getPixelWriter().setColor(x, y,newColor);
 
 				}  			   			
 			}
 		}
+		        /*}
+		    }
+		).start();*/
+		System.out.println(System.currentTimeMillis()-debut);
+
 	}
 
 

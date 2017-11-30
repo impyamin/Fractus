@@ -16,6 +16,8 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Rectangle;
@@ -79,9 +81,11 @@ public class FractaleView implements Observer {
 	ColorPicker colorPicker = new ColorPicker();
 	ColorPicker colorInsidePicker = new ColorPicker();
 	Button resetButton = new Button("Cancel");
+	private double mousePosX,mousePosY = 0;
+
 
 	public FractaleView(FractaleControler fracControl, Stage primaryStage) {
-		globe = new Globe(SPHERE_RADIUS,SPHERE_X,SPHERE_Y,scene,fracControl.getImage());
+		globe = new Globe(SPHERE_RADIUS,SPHERE_X,SPHERE_Y);
 
 		this.fracControl=fracControl;
 
@@ -216,6 +220,37 @@ public class FractaleView implements Observer {
 		// reset
 		resetButton.setOnAction((ActionEvent e )->{
 			fracControl.reset();
+		});
+		
+		scene.setOnMousePressed((MouseEvent me) -> {
+			mousePosX = me.getSceneX();
+			mousePosY = me.getSceneY();
+		});
+
+
+		scene.setOnMouseDragged((MouseEvent me) -> {
+			double dx = (mousePosX - me.getSceneX()) ;
+			double dy = (mousePosY - me.getSceneY());
+			System.out.println(dx);
+			System.out.println(dy);
+			if (me.isPrimaryButtonDown() && globe.contains(me.getSceneX(), me.getSceneY()))
+			{
+				globe.getRotateX().setAngle(globe.getRotateX().getAngle() - 
+						(dy / globe.getSphere().getRadius()*4 * -360) * (Math.PI / 180));
+				globe.getRotateY().setAngle(globe.getRotateY().getAngle() - 
+						(dx / globe.getSphere().getRadius()*4 * -360) * (Math.PI / 180));
+
+			}
+			mousePosX = me.getSceneX();
+			mousePosY = me.getSceneY();
+		});
+		
+		globe.getSphere().setOnScroll((ScrollEvent event)-> {			
+			fracControl.setZoomPlus((int)event.getDeltaX(),(int)event.getDeltaY());
+			System.out.println("EVENTTTTT " + event.getSceneX());
+			phongMaterial.setDiffuseMap(fracControl.getImage());
+			globe.getSphere().setMaterial(phongMaterial);
+			
 		});
 
 
