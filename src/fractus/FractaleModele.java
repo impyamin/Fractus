@@ -44,45 +44,44 @@ public class FractaleModele extends Observable {
 		/* new Thread(new Runnable() {
 			    @Override public void run() {*/
 
-		for( x = 0 ; x < resoX;x++)
-		{
-			for( y = 0; y < resoY ; y++) 
-			{
-				double c_r = (x+xOffset)/((double)zoom)*(1+Math.PI/10)+x1 ;
-				double c_i = (y+yOffset)/((double)zoom)+y1 ;
-				double z_r = 0;
-				double z_i = 0;
-				double i = 0;   
-
-				do
-				{
-					double tmp = z_r ;
-					z_r = Math.pow(z_r,2) - Math.pow(z_i,2) + c_r ;
-					z_i= 2*z_i*tmp + c_i;
-					++i ;
-				}
-				while((Math.pow(z_r,2)) + (Math.pow(z_i,2)) < 4 && i <max_it);
-
-
-				if(i == max_it) 
-					image.getPixelWriter().setColor(x,y,colorInside);
-
-				else
-				{
-					Color newColor = new Color(i*(currentColor.getRed())/max_it,i*(currentColor.getGreen())/max_it,i*(currentColor.getBlue())/max_it,1);	
-					
-					image.getPixelWriter().setColor(x, y,newColor);
-
-				}  			   			
-			}
+		 Multithreading t1 = new Multithreading(0,0,250,500,this);
+		 try {
+			t1.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-		        /*}
-		    }
-		).start();*/
+				
+		 Multithreading t2 = new Multithreading(250,0,500,500,this);
+		 try {
+			t2.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		 
+		
+		 Multithreading t3 = new Multithreading(500,0,750,500,this);
+		 try {
+			t3.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		 
+		 Multithreading t4 = new Multithreading(750,0,1000,500,this);
+		 try {
+			t4.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		 
+		
+	
 		System.out.println(System.currentTimeMillis()-debut);
 
 	}
 
+	public void mandelBrot2() {
+		
+	}
 
 	public void createOtherFractale() {
 		for(int x = 0 ; x < 1020;x++)
@@ -160,13 +159,17 @@ public class FractaleModele extends Observable {
 
 	public void setZoom(int zoomX,int zoomY, double coeff) {
 		zoom *=coeff ;
-		xOffset = zoomX;
-		yOffset=zoomY;
+		setxOffset(zoomX);
+		setyOffset(zoomY);
 		//PixelReader pixrd = image.getPixelReader();
 		//image = new WritableImage(pixrd,10,10,resoX,resoY);
 		setChanged();
 		notifyObservers();
 	}
+	public double getZoom() {
+		return zoom ;
+	}
+
 
 	public void setInsideColor(Color value) {
 		colorInside=value;
@@ -184,11 +187,28 @@ public class FractaleModele extends Observable {
 		y2 = 1.2;
 		currentColor = Color.GREEN;
 		colorInside = Color.BLACK;	
-		xOffset =10;
-		yOffset = 10;		
+		setxOffset(10);
+		setyOffset(10);		
 		setChanged();
 		notifyObservers();
 	}
+
+	public int getxOffset() {
+		return xOffset;
+	}
+
+	public void setxOffset(int xOffset) {
+		this.xOffset = xOffset;
+	}
+
+	public int getyOffset() {
+		return yOffset;
+	}
+
+	public void setyOffset(int yOffset) {
+		this.yOffset = yOffset;
+	}
+	
 
 
 
