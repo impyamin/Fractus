@@ -248,9 +248,7 @@ public class FractaleView implements Observer {
 		globe.getSphere().setOnScroll((ScrollEvent event)-> {			
 			fracControl.setZoomPlus((int)event.getDeltaX(),(int)event.getDeltaY());
 			System.out.println("EVENTTTTT " + event.getSceneX());
-			phongMaterial.setDiffuseMap(fracControl.getImage());
-			globe.getSphere().setMaterial(phongMaterial);
-			
+
 		});
 
 
