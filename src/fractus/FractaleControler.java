@@ -11,9 +11,13 @@ public class FractaleControler {
 
 
 	}
-	public void setZoom(int zoomX,int zoomY)
+	public void setZoomPlus(int zoomX,int zoomY)
 	{
-		fracModele.setZoom(zoomX,zoomY);
+		fracModele.setZoom(zoomX,zoomY,fracModele.getZoomingValue());
+	}
+	
+	public void setZoomMinus(int zoomX, int zoomY) {
+		fracModele.setZoom(zoomX,zoomY,1/fracModele.getZoomingValue());
 	}
 
 

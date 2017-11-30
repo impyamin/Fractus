@@ -27,25 +27,26 @@ import javafx.util.Duration;
 
 public class FractaleView implements Observer {
 
-	final double WINDOW_HEIGHT = 1920.;
-	final double WINDOW_WIDTH = 1080.;
-	final double RECT_HEIGHT = WINDOW_HEIGHT;
-	final double RECT_WIDTH = WINDOW_WIDTH/5;
-	final double BUTTON_SIZE = RECT_WIDTH/6;
-	final double BUTTON_Y = 100.;
-	final double SPHERE_RADIUS = 400.; 
-	final double SPHERE_X = RECT_WIDTH+(WINDOW_WIDTH-RECT_WIDTH)/2;
-	final double SPHERE_Y = WINDOW_WIDTH/2;
-	final double BUT_ZOOM_X =0.25*((RECT_WIDTH)/2-BUTTON_SIZE/2);
-	final double BUT_PLAY_X =(RECT_WIDTH)/2-BUTTON_SIZE/2;
-	final double BUT_PAUSE_X =1.75*((RECT_WIDTH)/2-BUTTON_SIZE/2);
-	final double ELEMENT_HEIGHT=20.;
-	final double ELEMENT_X=20.;
-	final double FRACTALE_TYPE_Y=190.;
-	final double NB_ITERATION_Y=270.;
-	final double COLOR_PICKER_Y=350;
-	final double COLOR_PICKER_HEIGHT = 285.;
-	final double SHIFT=10.;
+	private final double WINDOW_HEIGHT = 1920.;
+	private final double WINDOW_WIDTH = 1080.;
+	private final double RECT_HEIGHT = WINDOW_HEIGHT;
+	private final double RECT_WIDTH = WINDOW_WIDTH/5;
+	private final double BUTTON_SIZE = RECT_WIDTH/6;
+	private final double BUTTON_Y = 100.;
+	private final double SPHERE_RADIUS = 400.; 
+	private final double SPHERE_X = RECT_WIDTH+(WINDOW_WIDTH-RECT_WIDTH)/2;
+	private final double SPHERE_Y = WINDOW_WIDTH/2;
+	private final double BUT_ZOOM_PLUS_X =0.70*((RECT_WIDTH)/2-BUTTON_SIZE/2);
+	private final double BUT_ZOOM_MINUS_X = 0.15*((RECT_WIDTH)/2-BUTTON_SIZE/2);
+	private final double BUT_PLAY_X =1.20*(RECT_WIDTH)/2-BUTTON_SIZE/2;
+	private final double BUT_PAUSE_X =1.80*((RECT_WIDTH)/2-BUTTON_SIZE/2);
+	private final double ELEMENT_HEIGHT=20.;
+	private final double ELEMENT_X=20.;
+	private final double FRACTALE_TYPE_Y=190.;
+	private final double NB_ITERATION_Y=270.;
+	private final double COLOR_PICKER_Y=350;
+	private final double COLOR_PICKER_HEIGHT = 285.;
+	private final double SHIFT=10.;
 
 
 	FractaleControler fracControl;
@@ -57,14 +58,15 @@ public class FractaleView implements Observer {
 	final Rectangle rectangle = new Rectangle(0,0,RECT_WIDTH,RECT_HEIGHT);
 	Button pauseButton = new Button("||");
 	Button playButton = new Button("|>");
-	Button zoomButton = new Button("+");
+	Button zoomButtonPlus = new Button("+");
+	Button zoomButtonMinus = new Button("-");
 	ObservableList<String> options = 
 			FXCollections.observableArrayList(
 					"Mandelbrot",
 					"Option 2"
 					);
-	Button[] buttons = {zoomButton,pauseButton,playButton};
-	double[] buttonX = {BUT_ZOOM_X,BUT_PAUSE_X,BUT_PLAY_X};
+	Button[] buttons = {zoomButtonPlus,zoomButtonMinus,pauseButton,playButton};
+	double[] buttonX = {BUT_ZOOM_PLUS_X,BUT_ZOOM_MINUS_X,BUT_PAUSE_X,BUT_PLAY_X};
 	final ComboBox<String> fractaleType = new ComboBox<String>(options);
 	PhongMaterial phongMaterial = new PhongMaterial();
 
@@ -93,6 +95,7 @@ public class FractaleView implements Observer {
 		for(Button button : buttons)
 		{
 			button.setMinSize(BUTTON_SIZE,BUTTON_SIZE);
+			button.setMaxSize(BUTTON_SIZE, BUTTON_SIZE);
 			button.setLayoutY(BUTTON_Y);
 		}
 		for(int num=0;num<buttonX.length;num++)
@@ -137,7 +140,8 @@ public class FractaleView implements Observer {
 		group.getChildren().add(rectangle);
 		group.getChildren().add(pauseButton);
 		group.getChildren().add(playButton);
-		group.getChildren().add(zoomButton);
+		group.getChildren().add(zoomButtonPlus);
+		group.getChildren().add(zoomButtonMinus);
 		group.getChildren().add(fractaleType);
 		group.getChildren().add(nbIterationLabel);
 		group.getChildren().add(nbIteration);
@@ -197,10 +201,14 @@ public class FractaleView implements Observer {
 			fracControl.setInsideColor(colorInsidePicker.getValue());
 		});
 		//zoom
-		zoomButton.setOnAction((ActionEvent e)->{
-			fracControl.setZoom(0,0);
-			globe.getSphere().setRadius(460);
-		});			
+		zoomButtonPlus.setOnAction((ActionEvent e)->{
+			fracControl.setZoomPlus(0,0);
+			globe.getSphere().setRadius(460.);
+		});	
+		zoomButtonMinus.setOnAction((ActionEvent e)->{
+			fracControl.setZoomMinus(0,0);
+			globe.getSphere().setRadius(400.);
+		});
 		// fractal type
 		fractaleType.setOnAction((ActionEvent e)->{
 			fracControl.setFractaleType(fractaleType.getValue());
@@ -220,7 +228,6 @@ public class FractaleView implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println("update !");
 		phongMaterial.setDiffuseMap(fracControl.getImage());
 	}
 

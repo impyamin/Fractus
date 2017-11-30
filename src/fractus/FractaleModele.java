@@ -26,6 +26,7 @@ public class FractaleModele extends Observable {
 	private Color colorInside = Color.BLACK;	
 	private int xOffset =10;
 	private int yOffset = 10;
+	private double zoomingValue=1.6;
 	
 
 	private WritableImage image = new WritableImage(resoX,resoY);
@@ -66,7 +67,8 @@ public class FractaleModele extends Observable {
 
 				else
 				{
-					Color newColor = new Color(i*(currentColor.getRed())/max_it,i*(currentColor.getGreen())/max_it,i*(currentColor.getBlue())/max_it,1);					
+					Color newColor = new Color((i*1+Math.PI/10)*(currentColor.getRed())/max_it,(i*1+Math.PI/10)*(currentColor.getGreen())/max_it,(i*1.1)*(currentColor.getBlue())/max_it,1);					
+					
 					image.getPixelWriter().setColor(x, y,newColor);
 
 				}  			   			
@@ -109,6 +111,11 @@ public class FractaleModele extends Observable {
 	public int getNbIteration() {
 		return max_it;
 	}
+	
+	public double getZoomingValue() {
+		return zoomingValue;
+	}
+	
 	public WritableImage getImage() {
 		return image;
 
@@ -144,8 +151,8 @@ public class FractaleModele extends Observable {
 		notifyObservers();
 	}
 
-	public void setZoom(int zoomX,int zoomY) {
-		zoom *=1.6 ;
+	public void setZoom(int zoomX,int zoomY, double coeff) {
+		zoom *=coeff ;
 		x = zoomX;
 		y=zoomY;
 		//PixelReader pixrd = image.getPixelReader();
@@ -175,6 +182,7 @@ public class FractaleModele extends Observable {
 		setChanged();
 		notifyObservers();
 	}
+
 
 
 

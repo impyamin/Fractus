@@ -69,7 +69,7 @@ public class Globe {
 	public void handleScroll() {
 		System.out.println("EZZZZ");
 		sphere.setOnScroll((ScrollEvent event)-> {			
-			fracControl.setZoom((int)event.getDeltaX(),(int)event.getDeltaY());
+			fracControl.setZoomPlus((int)event.getDeltaX(),(int)event.getDeltaY());
 			System.out.println("EVENTTTTT " + event.getSceneX());
 			phongMaterial.setDiffuseMap(fracControl.getImage());
 			sphere.setMaterial(phongMaterial);
