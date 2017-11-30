@@ -79,9 +79,7 @@ public class FractaleModele extends Observable {
 
 	}
 
-	public void mandelBrot2() {
-		
-	}
+	
 
 	public void createOtherFractale() {
 		for(int x = 0 ; x < 1020;x++)

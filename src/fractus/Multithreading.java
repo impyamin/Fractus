@@ -33,6 +33,9 @@ public class Multithreading extends Thread {
 		zoom = frac.getZoom();
 		xOffset = frac.getxOffset();
 		yOffset = frac.getyOffset();
+		max_it = frac.getNbIteration();
+		currentColor = frac.getCurrentColor();
+		colorInside = frac.getColorInside();
 		start();
 
 	}	
