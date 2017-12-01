@@ -207,11 +207,9 @@ public class FractaleView implements Observer {
 		//zoom
 		zoomButtonPlus.setOnAction((ActionEvent e)->{
 			fracControl.setZoomPlus(0,0);
-			globe.getSphere().setRadius(460.);
 		});	
 		zoomButtonMinus.setOnAction((ActionEvent e)->{
 			fracControl.setZoomMinus(0,0);
-			globe.getSphere().setRadius(400.);
 		});
 		// fractal type
 		fractaleType.setOnAction((ActionEvent e)->{

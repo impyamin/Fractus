@@ -15,7 +15,7 @@ public class FractaleControler {
 	{
 		fracModele.setZoom(zoomX,zoomY,fracModele.getZoomingValue());
 	}
-	
+
 	public void setZoomMinus(int zoomX, int zoomY) {
 		fracModele.setZoom(zoomX,zoomY,1/fracModele.getZoomingValue());
 	}
@@ -40,19 +40,11 @@ public class FractaleControler {
 	}
 	public void setCurrentColor(Color value) {
 		fracModele.setCurrentColor(value);		
-		
+
 	}
 	public WritableImage getImage() {
-		switch (fracModele.getFractalType()) {
-		case "Mandelbrot":
-			fracModele.createMandelBrot();
-			break;
-		case "Option 2" :
-			fracModele.createOtherFractale();
-			break;
-		default:
-			break;
-		}
+
+		fracModele.createFractale();
 		return fracModele.getImage();
 	}
 	public void reset() {
@@ -68,7 +60,7 @@ public class FractaleControler {
 		return fracModele.getNbIteration();
 	}
 
-	
-	
+
+
 
 }
