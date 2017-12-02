@@ -7,32 +7,33 @@ public class Multithreading extends Thread {
 
 
 
-	private double zoom;
+	private double zoom ;
 	private int max_it = 50;
 	private int x =0;
 	private int y=0;
-	private double x1 = -2.1;
-	double x2=0.6;
-	double y2=1.2;
-	private double y1 = -1.2;
+	private double x1;
+	private double x2;
+	private double y2;
+	private double y1;
 	private Color currentColor = Color.GREEN;
 	private Color colorInside = Color.BLACK;	
-	private int xOffset;
-	private int yOffset;	
+		
 	private int xMax,yMax;
 	private int xMin,yMin;
 	private String fracType;
 	private FractaleModele frac ;
 
 	Multithreading(int x,int y,int x2,int y2,FractaleModele fracMod){
+		frac = fracMod;
+		this.x1=frac.getX1();
+		this.x2 = frac.getX2();
+		this.y1=frac.getY1();
+		this.y2 = frac.getY2();
 		xMax=x2;
 		yMax=y2;
 		xMin=x;
 		yMin=y;
-		frac = fracMod;
-		zoom = frac.getZoom();
-		xOffset = frac.getxOffset();
-		yOffset = frac.getyOffset();
+		zoom = frac.getZoom();		
 		max_it = frac.getNbIteration();
 		currentColor = frac.getCurrentColor();
 		colorInside = frac.getColorInside();
@@ -49,8 +50,8 @@ public class Multithreading extends Thread {
 			{
 				for( y = yMin; y < yMax ; y++) 
 				{
-					double c_r = (x+xOffset)/((double)zoom)*(1+Math.PI/10)+x1 ;
-					double c_i = (y+yOffset)/((double)zoom)+y1 ;
+					double c_r = x/((double)zoom)*(1+Math.PI/10)+x1 ;
+					double c_i = y/((double)zoom)+y1 ;
 					double z_r = 0;
 					double z_i = 0;
 					double i = 0;   

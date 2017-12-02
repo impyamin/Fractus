@@ -22,8 +22,7 @@ public class FractaleModele extends Observable {
 	private double y2 = 1.2;
 	private Color currentColor = Color.GREEN;
 	private Color colorInside = Color.BLACK;	
-	private int xOffset =10;
-	private int yOffset = 10;
+
 	private double zoomingValue=1.6;
 	
 
@@ -142,10 +141,9 @@ public class FractaleModele extends Observable {
 
 	public void setZoom(int zoomX,int zoomY, double coeff) {
 		zoom *=coeff ;
-		setxOffset(zoomX);
-		setyOffset(zoomY);
-		//PixelReader pixrd = image.getPixelReader();
-		//image = new WritableImage(pixrd,10,10,resoX,resoY);
+		x1 +=-0.75;
+		y2 -=1.2;		
+		System.out.println("x1 ;   "+ x1);
 		setChanged();
 		notifyObservers();
 	}
@@ -166,31 +164,45 @@ public class FractaleModele extends Observable {
 		zoom = 200 ;
 		max_it = 50;
 		x1 = -2.1;
-		y1 = -1.2;
-		y2 = 1.2;
+		setY1(-1.2);
+		setY2(1.2);
 		currentColor = Color.GREEN;
-		colorInside = Color.BLACK;	
-		setxOffset(10);
-		setyOffset(10);		
+		colorInside = Color.BLACK;			
 		setChanged();
 		notifyObservers();
 	}
 
-	public int getxOffset() {
-		return xOffset;
+	public double getX1() {
+		return x1;
+	}
+	
+	public void setX1(double x1) {
+		this.x1 = x1;
+	}
+	public double getX2() {
+		return x2;
 	}
 
-	public void setxOffset(int xOffset) {
-		this.xOffset = xOffset;
+	public void setX2(double x2) {
+		this.x2 = x2;
 	}
 
-	public int getyOffset() {
-		return yOffset;
+	public double getY1() {
+		return y1;
 	}
 
-	public void setyOffset(int yOffset) {
-		this.yOffset = yOffset;
+	public void setY1(double y1) {
+		this.y1 = y1;
 	}
+
+	public double getY2() {
+		return y2;
+	}
+
+	public void setY2(double y2) {
+		this.y2 = y2;
+	}
+
 	
 
 
