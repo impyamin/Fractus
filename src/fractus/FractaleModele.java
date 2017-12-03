@@ -15,18 +15,19 @@ public class FractaleModele extends Observable {
 	private int resoX = 2*resoY ;
 	private int zoom = 200 ;
 	private int max_it = 50;
-	private int x,y;
 	private double x1 = -2.1;
-	private double x2 = 3.0;
+	private double x2 = 3;
 	private double y1 = -1.2;
 	private double y2 = 1.2;
 	private Color currentColor = Color.GREEN;
 	private Color colorInside = Color.BLACK;	
+	private double pic_x = (x2 -x1) * zoom;
+	private double pic_y = (y2-y1)  *zoom ;
 
 	private double zoomingValue=1.6;
 	
 
-	private WritableImage image = new WritableImage(resoX,resoY);
+	private WritableImage image = new WritableImage((int)pic_x+1,(int)pic_y);
 
 	private String fractalType="Mandelbrot";
 
@@ -41,14 +42,14 @@ public class FractaleModele extends Observable {
 		 System.out.println("createFractale");
 		 
 
-		 Multithreading t1 = new Multithreading(0,0,250,500,this);
-		 try {
+		 Multithreading t1 = new Multithreading(0,0,1000,500,this);
+	 try {
 			t1.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 				
-		 Multithreading t2 = new Multithreading(250,0,500,500,this);
+		/* Multithreading t2 = new Multithreading(250,0,500,500,this);
 		 try {
 			t2.join();
 		} catch (InterruptedException e) {
@@ -68,7 +69,7 @@ public class FractaleModele extends Observable {
 			t4.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		}*/
 		 
 		
 	
@@ -140,10 +141,16 @@ public class FractaleModele extends Observable {
 	}
 
 	public void setZoom(int zoomX,int zoomY, double coeff) {
-		zoom *=coeff ;
-		x1 +=-0.75;
-		y2 -=1.2;		
-		System.out.println("x1 ;   "+ x1);
+			
+		zoom+=50 ;		
+		if(x1 < -0.5)
+			x1 +=0.1;
+		//x1-=0.01;
+		if(y1 < -0.9)
+		y1 +=.01;
+		y2 -=0.2;		
+		
+		System.out.println("y2 ;   "+ y2);
 		setChanged();
 		notifyObservers();
 	}
@@ -201,6 +208,13 @@ public class FractaleModele extends Observable {
 
 	public void setY2(double y2) {
 		this.y2 = y2;
+	}
+	
+	public double getPic_x() {
+		return pic_x;
+	}
+	public double getPic_y() {
+		return pic_y;
 	}
 
 	
