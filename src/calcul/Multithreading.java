@@ -1,6 +1,6 @@
-package fractus;
+package calcul;
 
-
+import fractus.FractaleModele;
 
 public class Multithreading extends Thread {
 
@@ -9,7 +9,7 @@ public class Multithreading extends Thread {
 	Fractal fractal;
 	String fracType;
 
-	Multithreading(int x,int y,int x2,int y2,FractaleModele mod){
+	public Multithreading(int x,int y,int x2,int y2,FractaleModele mod){
 		fracMod = mod;
 		fractal=fracMod.getFractal();
 		fracType=fractal.getFractalType();

@@ -3,6 +3,7 @@ package fractus;
 import java.util.Observable;
 import java.util.Observer;
 
+import MCD.Globe;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.application.Application;

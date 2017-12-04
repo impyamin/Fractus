@@ -1,4 +1,4 @@
-package fractus;
+package calcul;
 
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -17,9 +17,8 @@ public class Mandelbrot extends Fractal {
 		colorInside = Color.BLACK;	
 		//pic_x = (x2 -x1) * zoom;
 		//pic_y = (y2-y1)  *zoom ;
-		image = new WritableImage(2000,1000);
-		pic_x = 2000;
-		pic_y = 1000;
+		image = new WritableImage((int)pic_x,(int)pic_y);
+
 	}
 	@Override
 	public void run(){

@@ -1,5 +1,8 @@
-package fractus;
+package MCD;
 
+import fractus.FractaleControler;
+import fractus.FractaleModele;
+import fractus.FractaleView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

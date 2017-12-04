@@ -1,5 +1,6 @@
-package fractus;
+package calcul;
 
+import fractus.FractaleModele;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -16,8 +17,8 @@ public class Fractal {
 	protected int xMin,yMin;
 	protected String fracType;
 	protected FractaleModele frac ;
-	protected double pic_x; 
-	protected double pic_y; 
+	protected double pic_x = 2000;
+	protected double pic_y = pic_x/2;
 	protected WritableImage image;
 
 	private double zoomingValue=1.6;
@@ -49,18 +50,6 @@ public class Fractal {
 	
 	public double getZoomingValue() {
 		return zoomingValue;
-	}
-
-	public int getPicX() {
-		return (int) pic_x;
-	}
-
-	public int getPicY() {
-		// TODO Auto-generated method stub
-		return (int) pic_y;
-	}
-	public double getZoom() {
-		return zoom;
 	}
 
 	public void setCurrentColor(Color value) {
@@ -104,5 +93,6 @@ public class Fractal {
 	public WritableImage getImage() {
 		return image;
 	}
+
 
 }

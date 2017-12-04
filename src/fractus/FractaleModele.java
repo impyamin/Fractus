@@ -1,9 +1,10 @@
 package fractus;
 
-
-
 import java.util.Observable;
 
+import calcul.Fractal;
+import calcul.Mandelbrot;
+import calcul.Multithreading;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -88,10 +89,6 @@ public class FractaleModele extends Observable {
 		return fractal.getImage();
 
 	}
-	public double getZoom() {
-		return fractal.getZoom();
-	}
-
 
 	public void setCurrentColor(Color value) {
 		fractal.setCurrentColor(value);	
