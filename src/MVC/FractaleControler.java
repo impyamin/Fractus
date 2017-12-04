@@ -1,5 +1,6 @@
-package fractus;
+package MVC;
 
+import MVC.FractaleModele.FracType;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -23,7 +24,7 @@ public class FractaleControler {
 		fracModele.setNbIteration(it);		
 	}
 
-	public void setFractaleType(String type) {
+	public void setFractaleType(FracType type) {
 		fracModele.setNewFractal(type);
 		}
 	

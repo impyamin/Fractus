@@ -1,6 +1,7 @@
 package calcul;
 
-import fractus.FractaleModele;
+import MVC.FractaleModele;
+import MVC.FractaleModele.FracType;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -15,10 +16,10 @@ public abstract class Fractal {
 	protected Color colorInside;		
 	protected int xMax,yMax;
 	protected int xMin,yMin;
-	protected String fracType;
+	protected FracType fracType;
 	protected FractaleModele frac ;
-	protected int pic_x ;
-	protected int pic_y;
+	protected int pic_x=2000;
+	protected int pic_y=pic_x/2;
 	protected WritableImage image;
 	
 	public int getPic_x() {
@@ -51,7 +52,7 @@ public abstract class Fractal {
 		return colorInside;
 	}
 
-	public String getFractalType() {
+	public FracType getFractalType() {
 		return fracType;
 	}
 
@@ -68,7 +69,7 @@ public abstract class Fractal {
 
 	}
 
-	public void setFractaleType(String type) {
+	public void setFractaleType(FracType type) {
 		fracType=type;
 
 	}

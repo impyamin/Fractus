@@ -1,9 +1,10 @@
-package fractus;
+package MVC;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import MCD.Globe;
+import Appli.Globe;
+import MVC.FractaleModele.FracType;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
@@ -63,15 +64,15 @@ public class FractaleView implements Observer {
 	Button playButton = new Button("|>");
 	Button zoomButtonPlus = new Button("+");
 	Button zoomButtonMinus = new Button("-");
-	ObservableList<String> options = 
+	ObservableList<FracType> options = 
 			FXCollections.observableArrayList(
-					"Mandelbrot",
-					"Julia",
-					"Buddhabrot"
+					FracType.Mandelbrot,
+					FracType.Julia,
+					FracType.Buddhabrot
 					);
 	Button[] buttons = {zoomButtonPlus,zoomButtonMinus,pauseButton,playButton};
 	double[] buttonX = {BUT_ZOOM_PLUS_X,BUT_ZOOM_MINUS_X,BUT_PAUSE_X,BUT_PLAY_X};
-	final ComboBox<String> fractaleType = new ComboBox<String>(options);
+	final ComboBox<FracType> fractaleType = new ComboBox<FracType>(options);
 	PhongMaterial phongMaterial = new PhongMaterial();
 
 	final Label textIterWarningLabel = new Label();
@@ -112,7 +113,7 @@ public class FractaleView implements Observer {
 		fractaleTypeLabel.setLayoutX(ELEMENT_X);
 		fractaleType.setLayoutY(FRACTALE_TYPE_Y);
 		fractaleType.setLayoutX(ELEMENT_X);
-		fractaleType.setValue((String) options.toArray()[0]);
+		fractaleType.setValue((FracType) options.toArray()[0]);
 		nbIterationLabel.setText("Iteration number :");
 		nbIterationLabel.setLayoutX(ELEMENT_X);
 		nbIterationLabel.setLayoutY(NB_ITERATION_Y-ELEMENT_HEIGHT);

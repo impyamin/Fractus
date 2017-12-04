@@ -1,12 +1,13 @@
 package calcul;
 
+import MVC.FractaleModele.FracType;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
 public class Mandelbrot extends Fractal {
 
 	public Mandelbrot() {
-		fracType="Mandelbrot";
+		fracType=FracType.Mandelbrot;
 		zoom = 400 ;
 		max_it = 50;
 		x1 = -2.1;

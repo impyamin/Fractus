@@ -1,11 +1,12 @@
 package calcul;
 
+import MVC.FractaleModele.FracType;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
 public class Julia extends Fractal{
 	public Julia(){
-		fracType="Julia";
+		fracType=FracType.Julia;
 		zoom = 200 ;
 		max_it = 150;
 		x1 = -1;
@@ -50,7 +51,7 @@ public class Julia extends Fractal{
 	}
 	@Override
 	public void reset(){
-		fracType="Julia";
+		fracType=FracType.Julia;
 		zoom = 100 ;
 		max_it = 150;
 		x1 = -1;

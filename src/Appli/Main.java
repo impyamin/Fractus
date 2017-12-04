@@ -1,8 +1,8 @@
-package MCD;
+package Appli;
 
-import fractus.FractaleControler;
-import fractus.FractaleModele;
-import fractus.FractaleView;
+import MVC.FractaleControler;
+import MVC.FractaleModele;
+import MVC.FractaleView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

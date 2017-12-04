@@ -1,7 +1,8 @@
-package fractus;
+package MVC;
 
 import java.util.Observable;
 
+import calcul.Buddhabrot;
 import calcul.Fractal;
 import calcul.Julia;
 import calcul.Mandelbrot;
@@ -18,8 +19,11 @@ public class FractaleModele extends Observable {
 
 
 
-	private String fractalType=fractal.getFractalType();
+	private FracType fractalType=fractal.getFractalType();
 
+	public enum FracType {
+		Mandelbrot,Julia,Buddhabrot
+	}
 
 	public FractaleModele() {
 	}	
@@ -37,32 +41,32 @@ public class FractaleModele extends Observable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-
-		 Multithreading t2 = new Multithreading(0,0,1000,1000,fractal);
-		 try {
-				t2.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
 
-		 Multithreading t3 = new Multithreading(0,0,1500,750,fractal);
-		 try {
-				t3.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		Multithreading t2 = new Multithreading(0,0,1000,1000,fractal);
+		try {
+			t2.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		 Multithreading t4 = new Multithreading(0,0,2000,1000,fractal);
-		 try {
-				t4.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+		Multithreading t3 = new Multithreading(0,0,1500,750,fractal);
+		try {
+			t3.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Multithreading t4 = new Multithreading(0,0,2000,1000,fractal);
+		try {
+			t4.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 
 
@@ -78,7 +82,7 @@ public class FractaleModele extends Observable {
 		return fractal.getColorInside();
 	}
 
-	public String getFractalType() {
+	public FracType getFractalType() {
 		return fractalType;
 	}
 
@@ -101,7 +105,7 @@ public class FractaleModele extends Observable {
 		notifyObservers();
 	}
 
-	public void setFractaleType(String type)  {
+	public void setFractaleType(FracType type)  {
 		fractalType=type;
 	}
 
@@ -138,16 +142,16 @@ public class FractaleModele extends Observable {
 		return fractal;
 	}
 
-	public void setNewFractal(String type) {
+	public void setNewFractal(FracType type) {
 		setFractaleType(type);
 		switch (type) {
-		case "Mandelbrot":
+		case Mandelbrot:
 			fractal = new Mandelbrot();
 			break;
-		case "Julia" :
+		case Julia :
 			fractal = new Julia();
 			break;
-		case "Buddhabrot":
+		case Buddhabrot:
 			fractal = new Buddhabrot();
 			break;
 		}

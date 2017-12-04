@@ -1,6 +1,4 @@
-package fractus;
-
-import calcul.Fractal;
+package calcul;
 
 public class Buddhabrot extends Fractal {
 	public Buddhabrot() {
