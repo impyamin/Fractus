@@ -16,7 +16,7 @@ public class Mandelbrot extends Fractal {
 		currentColor = Color.GREEN;
 		colorInside = Color.BLACK;	
 
-		image = new WritableImage(pic_x,pic_y);
+		image = new WritableImage(2000,1000);
 
 	}
 	@Override

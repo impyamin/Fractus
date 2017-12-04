@@ -9,9 +9,13 @@ public class Multithreading extends Thread {
 	Fractal fractal;
 	String fracType;
 
-	public Multithreading(int x,int y,Fractal frac){
+	public Multithreading(int x1,int y1,int x2,int y2,Fractal frac){
 
 		fractal=frac;
+		fractal.xMin =x1;
+		fractal.yMin =y1;
+		fractal.pic_x = x2 ;
+		fractal.pic_y = y2 ;
 		fracType=fractal.getFractalType();
 		start();
 	}	

@@ -17,8 +17,8 @@ public abstract class Fractal {
 	protected int xMin,yMin;
 	protected String fracType;
 	protected FractaleModele frac ;
-	protected int pic_x = 2000;
-	protected int pic_y = pic_x/2;
+	protected int pic_x ;
+	protected int pic_y;
 	protected WritableImage image;
 	
 	public int getPic_x() {

@@ -1,6 +1,5 @@
 package fractus;
 
-import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 

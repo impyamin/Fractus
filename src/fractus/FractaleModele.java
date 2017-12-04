@@ -30,34 +30,39 @@ public class FractaleModele extends Observable {
 		long debut = System.currentTimeMillis();
 
 
-		Multithreading t1 = new Multithreading(fractal.getPic_x(),fractal.getPic_y(),fractal);
+		Multithreading t1 = new Multithreading(0,0,500,1000,fractal);
 		try {
 			t1.join();
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
-	/*	 Multithreading t2 = new Multithreading(fractal.getPic_x()/4,fractal.getPic_y(),this,fractalType);
+		 Multithreading t2 = new Multithreading(0,0,1000,1000,fractal);
 		 try {
-			t2.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+				t2.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 
-		 Multithreading t3 = new Multithreading(2*fractal.getPic_x()/4,fractal.getPic_y(),this,fractalType);
+		 Multithreading t3 = new Multithreading(0,0,1500,750,fractal);
 		 try {
-			t3.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+				t3.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-		 Multithreading t4 = new Multithreading(3*fractal.getPic_x()/4,fractal.getPic_y(),this,fractalType);
+		 Multithreading t4 = new Multithreading(0,0,2000,1000,fractal);
 		 try {
-			t4.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}*/
+				t4.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 
 
