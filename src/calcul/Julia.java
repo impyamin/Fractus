@@ -7,28 +7,23 @@ public class Julia extends Fractal{
 	public Julia(){
 		fracType="Julia";
 		zoom = 200 ;
-		max_it = 50;
-		x1 = -2.1;
-		x2 = 3;
+		max_it = 150;
+		x1 = -1;
 		y1 = -1.2;
-		y2 = 1.2;
-		currentColor = Color.GREEN;
+		currentColor = Color.BLUEVIOLET;
 		colorInside = Color.BLACK;	
-		pic_x = (x2 -x1) * zoom;
-		pic_y = (y2-y1)  *zoom ;
-		image = new WritableImage((int)pic_x+1,(int)pic_y);
+		image = new WritableImage((int)pic_x,(int)pic_y);
 	}
 	@Override
 	public void run(){
-		System.out.println("run in mandelbrot");
 		for( x = xMin ; x < pic_x;x++)
 		{
 			for( y = yMin; y < pic_y ; y++) 
 			{
-				double c_r = x/((double)zoom)*(1+Math.PI/10)+x1 ;
-				double c_i = y/((double)zoom)+y1 ;
-				double z_r = 0;
-				double z_i = 0;
+				double c_r = 0.285;
+				double c_i = 0.01;
+				double z_r = x/((double)zoom)*(1+Math.PI/10)+x1;
+				double z_i = y/((double)zoom)+y1;
 				double i = 0;  
 
 				do
@@ -55,16 +50,13 @@ public class Julia extends Fractal{
 	}
 	@Override
 	public void reset(){
-		zoom = 200 ;
-		max_it = 50;
-		x1 = -2.1;
-		x2 = 3;
+		fracType="Julia";
+		zoom = 100 ;
+		max_it = 150;
+		x1 = -1;
 		y1 = -1.2;
-		y2 = 1.2;
-		currentColor = Color.GREEN;
+		currentColor = Color.BLUEVIOLET;
 		colorInside = Color.BLACK;	
-		pic_x = (x2 -x1) * zoom;
-		pic_y = (y2-y1)  *zoom ;
-		image = new WritableImage((int)pic_x+1,(int)pic_y);
+		image = new WritableImage((int)pic_x,(int)pic_y);
 	}
 }

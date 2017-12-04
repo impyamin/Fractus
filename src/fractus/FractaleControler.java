@@ -25,8 +25,9 @@ public class FractaleControler {
 	}
 
 	public void setFractaleType(String type) {
-		fracModele.setFractaleType(type);
-	}
+		fracModele.setNewFractal(type);
+		}
+	
 
 	public void setInsideColor(Color value) {
 		fracModele.setInsideColor(value);

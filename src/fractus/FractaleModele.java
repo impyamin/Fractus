@@ -3,6 +3,7 @@ package fractus;
 import java.util.Observable;
 
 import calcul.Fractal;
+import calcul.Julia;
 import calcul.Mandelbrot;
 import calcul.Multithreading;
 import javafx.scene.image.PixelReader;
@@ -17,7 +18,7 @@ public class FractaleModele extends Observable {
 
 
 
-	private String fractalType="Mandelbrot";
+	private String fractalType=fractal.getFractalType();
 
 
 	public FractaleModele() {
@@ -27,17 +28,16 @@ public class FractaleModele extends Observable {
 
 		//https://stackoverflow.com/questions/14097559/zooming-in-on-mandelbrot-set-fractal-in-java
 		long debut = System.currentTimeMillis();
-		System.out.println("createFractale");
 
 
-		Multithreading t1 = new Multithreading(0,0,2000,1000,this);
+		Multithreading t1 = new Multithreading(fractal.getPic_x(),fractal.getPic_y(),fractal);
 		try {
 			t1.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
-		/* Multithreading t2 = new Multithreading(250,0,500,500,this);
+	/*	 Multithreading t2 = new Multithreading(fractal.getPic_x()/4,fractal.getPic_y(),this,fractalType);
 		 try {
 			t2.join();
 		} catch (InterruptedException e) {
@@ -45,14 +45,14 @@ public class FractaleModele extends Observable {
 		}
 
 
-		 Multithreading t3 = new Multithreading(500,0,750,500,this);
+		 Multithreading t3 = new Multithreading(2*fractal.getPic_x()/4,fractal.getPic_y(),this,fractalType);
 		 try {
 			t3.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
-		 Multithreading t4 = new Multithreading(750,0,1000,500,this);
+		 Multithreading t4 = new Multithreading(3*fractal.getPic_x()/4,fractal.getPic_y(),this,fractalType);
 		 try {
 			t4.join();
 		} catch (InterruptedException e) {
@@ -96,10 +96,8 @@ public class FractaleModele extends Observable {
 		notifyObservers();
 	}
 
-	public void setFractaleType(String type) {
+	public void setFractaleType(String type)  {
 		fractalType=type;
-		setChanged();
-		notifyObservers();
 	}
 
 	public void setNbIteration(int nbiterations){
@@ -133,6 +131,23 @@ public class FractaleModele extends Observable {
 
 	public Fractal getFractal() {
 		return fractal;
+	}
+
+	public void setNewFractal(String type) {
+		setFractaleType(type);
+		switch (type) {
+		case "Mandelbrot":
+			fractal = new Mandelbrot();
+			break;
+		case "Julia" :
+			fractal = new Julia();
+			break;
+		case "Buddhabrot":
+			fractal = new Buddhabrot();
+			break;
+		}
+		setChanged();
+		notifyObservers();
 	}
 
 

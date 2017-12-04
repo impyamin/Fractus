@@ -9,16 +9,14 @@ public class Multithreading extends Thread {
 	Fractal fractal;
 	String fracType;
 
-	public Multithreading(int x,int y,int x2,int y2,FractaleModele mod){
-		fracMod = mod;
-		fractal=fracMod.getFractal();
+	public Multithreading(int x,int y,Fractal frac){
+
+		fractal=frac;
 		fracType=fractal.getFractalType();
 		start();
 	}	
 
 	public void run() {
-		System.out.println("run in multithreading");
-		System.out.println(fracType);
 		fractal.run();
 		}
 

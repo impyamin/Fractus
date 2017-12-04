@@ -15,14 +15,12 @@ public class Mandelbrot extends Fractal {
 		y2 = 1.2;
 		currentColor = Color.GREEN;
 		colorInside = Color.BLACK;	
-		//pic_x = (x2 -x1) * zoom;
-		//pic_y = (y2-y1)  *zoom ;
-		image = new WritableImage((int)pic_x,(int)pic_y);
+
+		image = new WritableImage(pic_x,pic_y);
 
 	}
 	@Override
 	public void run(){
-		System.out.println("run in mandelbrot");
 		for( x = xMin ; x < pic_x;x++)
 		{
 			for( y = yMin; y < pic_y ; y++) 
@@ -62,8 +60,6 @@ public class Mandelbrot extends Fractal {
 		y2 = 1.2;
 		currentColor = Color.GREEN;
 		colorInside = Color.BLACK;	
-		pic_x = (x2 -x1) * zoom;
-		pic_y = (y2-y1)  *zoom ;
 		image = new WritableImage((int)pic_x+1,(int)pic_y);
 	}
 }

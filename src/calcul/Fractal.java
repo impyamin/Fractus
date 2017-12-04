@@ -4,7 +4,7 @@ import fractus.FractaleModele;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
-public class Fractal {
+public abstract class Fractal {
 	protected double zoom ;
 	protected int max_it;
 	protected int x;
@@ -17,14 +17,25 @@ public class Fractal {
 	protected int xMin,yMin;
 	protected String fracType;
 	protected FractaleModele frac ;
-	protected double pic_x = 2000;
-	protected double pic_y = pic_x/2;
+	protected int pic_x = 2000;
+	protected int pic_y = pic_x/2;
 	protected WritableImage image;
+	
+	public int getPic_x() {
+		return pic_x;
+	}
+
+	public int getPic_y() {
+		return pic_y;
+	}
+
+
 
 	private double zoomingValue=1.6;
 	
 	
 	public void run(){
+		System.out.println("not good");
 		
 		
 	}

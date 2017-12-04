@@ -66,7 +66,8 @@ public class FractaleView implements Observer {
 	ObservableList<String> options = 
 			FXCollections.observableArrayList(
 					"Mandelbrot",
-					"Option 2"
+					"Julia",
+					"Buddhabrot"
 					);
 	Button[] buttons = {zoomButtonPlus,zoomButtonMinus,pauseButton,playButton};
 	double[] buttonX = {BUT_ZOOM_PLUS_X,BUT_ZOOM_MINUS_X,BUT_PAUSE_X,BUT_PLAY_X};
@@ -261,6 +262,9 @@ public class FractaleView implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		phongMaterial.setDiffuseMap(fracControl.getImage());
+		colorInsidePicker.setValue(fracControl.getColorInside());
+		colorPicker.setValue(fracControl.getCurrentColor());
+		nbIteration.setText(String.valueOf(fracControl.getNbIteration()));
 	}
 
 
