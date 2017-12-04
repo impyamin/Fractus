@@ -13,16 +13,14 @@ public class Multithreading extends Thread {
 		fracMod = mod;
 		fractal=fracMod.getFractal();
 		fracType=fractal.getFractalType();
-
 		start();
-
 	}	
 
 	public void run() {
 		System.out.println("run in multithreading");
 		System.out.println(fracType);
 		fractal.run();
-	}
+		}
 
 
 

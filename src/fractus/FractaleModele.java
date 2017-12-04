@@ -29,7 +29,7 @@ public class FractaleModele extends Observable {
 		System.out.println("createFractale");
 
 
-		Multithreading t1 = new Multithreading(0,0,1000,500,this);
+		Multithreading t1 = new Multithreading(0,0,2000,1000,this);
 		try {
 			t1.join();
 		} catch (InterruptedException e) {

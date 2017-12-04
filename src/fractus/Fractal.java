@@ -79,13 +79,19 @@ public class Fractal {
 	}
 	public void setZoom(int zoomX,int zoomY, double coeff) {
 
-		zoom+=50 ;		
+		zoom +=100;
+		System.out.println(" ZOOMMM " + zoom);
 		if(x1 < -0.5)
+		{
 			x1 +=0.1;
-		//x1-=0.01;
+			x2+=0.01;			
+		}
 		if(y1 < -0.9)
+		{
 			y1 +=.01;
-		y2 -=0.2;		
+			y2 -=0.2;					
+		}
+		
 
 	}
 
