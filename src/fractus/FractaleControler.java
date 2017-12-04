@@ -20,13 +20,6 @@ public class FractaleControler {
 		fracModele.setZoom(zoomX,zoomY,1/fracModele.getZoomingValue());
 	}
 
-
-	public double getResoY() {
-		return fracModele.getResolutionY();
-	}
-	public double getResoX() {
-		return fracModele.getResolutionX();
-	}
 	public void setNbIteration(Integer it) {
 		fracModele.setNbIteration(it);		
 	}
