@@ -84,11 +84,11 @@ public abstract class Fractal {
 		if(x1 < -0.5)
 		{
 			x1 +=0.1;
-			x2+=0.01;			
+			x2+=0.1;			
 		}
 		if(y1 < -0.9)
 		{
-			y1 +=.01;
+			y1 +=.1;
 			y2 -=0.2;					
 		}
 		

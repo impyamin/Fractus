@@ -25,8 +25,8 @@ public class Mandelbrot extends Fractal {
 		{
 			for( y = yMin; y < pic_y ; y++) 
 			{
-				double c_r = x/((double)zoom)*(1+Math.PI/10)+x1 ;
-				double c_i = y/((double)zoom)+y1 ;
+				double c_r = (x-x2)/((double)zoom)*(1+Math.PI/10)+x1 ;
+				double c_i = (y-y2)/((double)zoom)+y1 ;
 				double z_r = 0;
 				double z_i = 0;
 				double i = 0;
