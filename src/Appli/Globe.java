@@ -16,7 +16,7 @@ import javafx.scene.image.WritableImage;
 
 public class Globe {
 	private Sphere sphere;
-	private Rotate rotateX = new Rotate(0,Rotate.X_AXIS);
+	private Rotate rotateZ = new Rotate(0,Rotate.Z_AXIS);
 	private Rotate rotateY = new Rotate(0,Rotate.Y_AXIS);
 
 	public Globe(double radius, double defposX, double defposY){
@@ -25,7 +25,7 @@ public class Globe {
 		sphere.setLayoutX(defposX);
 		sphere.setLayoutY(defposY);		
 		sphere.setVisible(true);
-		sphere.getTransforms().addAll(rotateX,rotateY);
+		sphere.getTransforms().addAll(rotateZ,rotateY);
 
 	}
 
@@ -48,8 +48,8 @@ public class Globe {
 
 	}
 
-	public Rotate getRotateX() {
-		return rotateX;
+	public Rotate getRotateZ() {
+		return rotateZ;
 	}
 
 	public Rotate getRotateY() {

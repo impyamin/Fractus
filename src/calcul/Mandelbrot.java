@@ -26,8 +26,8 @@ public class Mandelbrot extends Fractal {
 		{
 			for( y = yMin; y < pic_y ; y++) 
 			{
-				double c_r = (x-x2)/((double)zoom)*(1+Math.PI/10)+x1 ;
-				double c_i = (y-y2)/((double)zoom)+y1 ;
+				double c_r = (x+x2)/((double)zoom)*(1+Math.PI/10)+x1 ;
+				double c_i = (y+y2)/((double)zoom)+y1 ;
 				double z_r = 0;
 				double z_i = 0;
 				double i = 0;
@@ -38,7 +38,7 @@ public class Mandelbrot extends Fractal {
 					z_i= 2*z_i*tmp + c_i;
 					++i ;
 				}
-				while((Math.pow(z_r,2)) + (Math.pow(z_i,2)) < 4 && i <max_it);
+				while((Math.pow(z_r,2)) + (Math.pow(z_i,2)) < 4  && i <max_it);
 				
 				if(i == max_it) { 
 					image.getPixelWriter().setColor(x,y,colorInside);

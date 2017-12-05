@@ -26,7 +26,6 @@ public class Julia extends Fractal{
 				double z_r = x/((double)zoom)*(1+Math.PI/10)+x1;
 				double z_i = y/((double)zoom)+y1;
 				double i = 0;  
-
 				do
 				{								
 					double tmp = z_r ;
@@ -35,7 +34,6 @@ public class Julia extends Fractal{
 					++i ;
 				}
 				while((Math.pow(z_r,2)) + (Math.pow(z_i,2)) < 4 && i <max_it);
-
 
 				if(i == max_it) { 
 					image.getPixelWriter().setColor(x,y,colorInside);

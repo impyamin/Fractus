@@ -236,11 +236,10 @@ public class FractaleView implements Observer {
 			System.out.println(dy);
 			if (me.isPrimaryButtonDown() && globe.contains(me.getSceneX(), me.getSceneY()))
 			{
-				globe.getRotateX().setAngle(globe.getRotateX().getAngle() - 
+				globe.getRotateZ().setAngle(globe.getRotateZ().getAngle() - 
 						(dy / globe.getSphere().getRadius()*4 * -360) * (Math.PI / 180));
 				globe.getRotateY().setAngle(globe.getRotateY().getAngle() - 
 						(dx / globe.getSphere().getRadius()*4 * -360) * (Math.PI / 180));
-
 			}
 			mousePosX = me.getSceneX();
 			mousePosY = me.getSceneY();
@@ -249,11 +248,7 @@ public class FractaleView implements Observer {
 		globe.getSphere().setOnScroll((ScrollEvent event)-> {			
 			fracControl.setZoomPlus((int)event.getDeltaX(),(int)event.getDeltaY());
 			System.out.println("EVENTTTTT " + event.getSceneX());
-
 		});
-
-
-
 	}
 
 
