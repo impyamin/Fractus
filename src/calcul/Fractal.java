@@ -22,6 +22,15 @@ public abstract class Fractal {
 	protected int pic_y=pic_x/2;
 	protected WritableImage image;
 	
+	public Color mixColors(Color color1, Color color2, double percent){
+		
+		  double redPart = color1.getRed() + (color2.getRed() - color1.getRed())*percent;
+		  double greenPart = color1.getGreen() + (color2.getGreen()-color1.getGreen())*percent;
+		  double bluePart = color1.getBlue() + (color2.getBlue()-color1.getBlue())*percent;
+		  
+		  return new Color(redPart, greenPart, bluePart,1);
+		}
+	
 	public int getPic_x() {
 		return pic_x;
 	}
@@ -37,7 +46,7 @@ public abstract class Fractal {
 		
 	}
 
-	public Color getCurrentColor() {
+	public Color getCurrentColor() { 
 		return currentColor;
 	}
 

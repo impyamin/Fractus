@@ -7,13 +7,13 @@ import javafx.scene.paint.Color;
 public class Julia extends Fractal{
 	public Julia(){
 		fracType=FracType.Julia;
-		zoom = 200 ;
+		zoom = 400 ;
 		max_it = 150;
 		x1 = -1;
 		y1 = -1.2;
-		currentColor = Color.BLUEVIOLET;
+		currentColor = Color.VIOLET;
 		colorInside = Color.BLACK;	
-		image = new WritableImage((int)pic_x,(int)pic_y);
+		image = new WritableImage(pic_x,pic_y);
 	}
 	@Override
 	public void run(){
