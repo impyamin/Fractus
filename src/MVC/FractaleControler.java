@@ -3,6 +3,12 @@ package MVC;
 import MVC.FractaleModele.FracType;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+/****
+ * 
+ * 
+ * @author JOLLIET Louis / TRICHA Yamin S3A
+ *
+ */
 
 public class FractaleControler {
 	FractaleModele fracModele ;

@@ -5,6 +5,12 @@ import MVC.FractaleModele;
 import MVC.FractaleView;
 import javafx.application.Application;
 import javafx.stage.Stage;
+/****
+ * 
+ * 
+ * @author JOLLIET Louis / TRICHA Yamin S3A
+ *
+ */
 
 public class Main extends Application {
 

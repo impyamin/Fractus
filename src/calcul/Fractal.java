@@ -5,6 +5,13 @@ import MVC.FractaleModele.FracType;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
+/****
+ * 
+ * 
+ * @author JOLLIET Louis / TRICHA Yamin S3A
+ *
+ */
+
 public abstract class Fractal {
 	protected double zoom ;
 	protected int max_it;

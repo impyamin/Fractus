@@ -11,6 +11,12 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
+/****
+ * 
+ * 
+ * @author JOLLIET Louis / TRICHA Yamin S3A
+ *
+ */
 
 public class FractaleModele extends Observable {	
 

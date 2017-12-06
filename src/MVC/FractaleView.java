@@ -28,6 +28,12 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/****
+ * 
+ * 
+ * @author JOLLIET Louis / TRICHA Yamin S3A
+ *
+ */
 
 public class FractaleView implements Observer {
 

@@ -2,6 +2,12 @@ package calcul;
 
 import MVC.FractaleModele;
 import MVC.FractaleModele.FracType;
+/****
+ * 
+ * 
+ * @author JOLLIET Louis / TRICHA Yamin S3A
+ *
+ */
 
 public class Multithreading extends Thread {
 

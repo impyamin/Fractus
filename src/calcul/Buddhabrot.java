@@ -1,4 +1,10 @@
 package calcul;
+/****
+ * 
+ * 
+ * @author JOLLIET Louis / TRICHA Yamin S3A
+ *
+ */
 
 public class Buddhabrot extends Fractal {
 	public Buddhabrot() {

@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import MVC.FractaleModele.FracType;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+/****
+ * 
+ * 
+ * @author JOLLIET Louis / TRICHA Yamin S3A
+ *
+ */
 
 public class Mandelbrot extends Fractal {
 	private ArrayList<Color> couleurs = new ArrayList<Color>();
