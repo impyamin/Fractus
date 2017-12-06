@@ -21,7 +21,7 @@ import javafx.scene.paint.Color;
 public class FractaleModele extends Observable {	
 
 
-	Fractal fractal = new Mandelbrot();
+	Fractal fractal = new Buddhabrot();
 
 
 

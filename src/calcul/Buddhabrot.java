@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.sun.javafx.geom.Vec2f;
 
+import javafx.scene.paint.Color;
+
 /****
  * 
  * 
@@ -12,6 +14,9 @@ import com.sun.javafx.geom.Vec2f;
  */
 
 public class Buddhabrot extends Fractal {
+	int iteration_rouge = 100;
+	int iteration_vert = 1000;
+	int iteration_bleu = 10000;
 	public Buddhabrot() {
 		// TODO Auto-generated constructor stub
 		x1 = -2.1;
@@ -19,20 +24,19 @@ public class Buddhabrot extends Fractal {
 		y1 = -1.2;
 		y2 = 1.2;
 		zoom = 100;
-		int iteration_rouge = 100;
-		int iteration_vert = 1000;
-		int iteration_bleu = 10000;
+
 		max_it = Math.max(iteration_rouge, Math.max(iteration_vert, iteration_bleu));
 	}
+	@SuppressWarnings("null")
 	@Override
 	public void run(){
-
+		System.out.println("BuddhaBrot try");
 		int image_x = (int) ((x2 - x1) * zoom);
 		int image_y = (int) ((y2 - y1) * zoom);
 
-		int pixels_rouge[][] = null;
-		int pixels_vert[][] = null;
-		int pixels_bleu[][] = null;
+		int pixels_rouge[][]= new int[image_x][image_y];
+		int pixels_vert[][] = new int[image_x][image_y];
+		int pixels_bleu[][] = new int[image_x][image_y];
 		for(int i=0;i<image_x;i++)
 			for(int j=0;j<image_y;j++)
 			{
@@ -40,7 +44,6 @@ public class Buddhabrot extends Fractal {
 				pixels_rouge[i][j]=0;
 				pixels_vert[i][j]=0;
 			}
-		// en théorie, on devrait faire une seul boucle dans laquelle on devrait prendre les coordonnées (x; y) au hasard.
 		for(int x =0; x<image_x;x++)
 		{
 			for(int y=0;y<image_y;y++)
@@ -58,46 +61,39 @@ public class Buddhabrot extends Fractal {
 					z_r = z_r*z_r - z_i*z_i + c_r;
 					z_i = 2*z_i*tmp + c_i;
 					i++;
-					Vec2f a = null;
-					a.x=(float) ((z_r-x1)*zoom);
-					a.y=(float) ((z_i-y1)*zoom);
+					Vec2f a= new Vec2f((float) ((z_r-x1)*zoom),(float) ((z_i-y1)*zoom));
 					tmp_pixels.add(a);
 				}				
 				while(z_r*z_r + z_i*z_i < 4 && i < max_it);
+				if(i<iteration_rouge)
+					for(Vec2f pixel : tmp_pixels)
+						if(pixel.x<=image_x && pixel.x>=0 && pixel.y<=image_y&& pixel.y>=0)
+							pixels_rouge[(int) pixel.x][(int) pixel.y]++;
+
+				if(i<iteration_vert)
+					for(Vec2f pixel : tmp_pixels)
+						if(pixel.x<=image_x && pixel.x>=0 && pixel.y<=image_y&& pixel.y>=0)
+							pixels_vert[(int) pixel.x][(int) pixel.y]++;
+				if(i<iteration_bleu)
+					for(Vec2f pixel : tmp_pixels)
+						if(pixel.x<=image_x && pixel.x>=0 && pixel.y<=image_y&& pixel.y>=0)
+							pixels_bleu[(int) pixel.x][(int) pixel.y]++;
+				
 			}
 		}
-
-//				si i < iteration_rouge
-//				Pour les iteration_rouge premières valeurs pixel de tmp_pixels
-//				si la case pixels_rouge[pixel[0]][pixel[1]] existe
-//				on incrémente la case en question
-//				finSi
-//				finPour
-//				finSi
-//				si i < iteration_vert
-//				Pour les iteration_vert premières valeurs pixel de tmp_pixels
-//				si la case pixels_vert[pixel[0]][pixel[1]] existe
-//				on incrémente la case en question
-//				finSi
-//				finPour
-//				finSi
-//				si i < iteration_bleu
-//				Pour les iteration_bleu premières valeurs pixel de tmp_pixels
-//				si la case pixels_bleu[pixel[0]][pixel[1]] existe
-//				on incrémente la case en question
-//				finSi
-//				finPour
-//				finSi
-//				finPour
-//				finPour
-//
-//				Pour chaque pixel de coordonnées (x; y) de l'image
-//				Dessiner le pixel de coordonnées (x; y) avec la couleur rgb(min(pixels_rouge[x][y], 255), min(pixels_vert[x][y], 255), min(pixels_bleu[x][y], 255))
-//				finPour
+		System.out.println("before problemes");
+		for(int x =0; x<image_x;x++)
+			for(int y=0;y<image_y;y++)
+			{
+				Color newColor = new Color(Math.min(pixels_rouge[x][y], 255), Math.min(pixels_vert[x][y], 255), Math.min(pixels_bleu[x][y], 255),1);
+				image.getPixelWriter().setColor(x, y,newColor);
+				System.out.println(newColor.getRed()+"."+newColor.getGreen()+"."+newColor.getBlue());
 
 			}
-			@Override
-			public void reset(){
 
-			}
-		}
+	}
+	@Override
+	public void reset(){
+
+	}
+}
