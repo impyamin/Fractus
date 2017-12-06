@@ -17,13 +17,13 @@ public class FractaleControler {
 
 
 	}
-	public void setZoomPlus(int zoomX,int zoomY)
+	public void setZoomPlus(String act)
 	{
-		fracModele.setZoom(zoomX,zoomY,fracModele.getZoomingValue());
+		fracModele.setZoom(act);
 	}
 
-	public void setZoomMinus(int zoomX, int zoomY) {
-		fracModele.setZoom(zoomX,zoomY,1/fracModele.getZoomingValue());
+	public void setZoomMinus(String act) {
+		fracModele.setZoom(act);
 	}
 
 	public void setNbIteration(Integer it) {

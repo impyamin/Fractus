@@ -28,16 +28,16 @@ public abstract class Fractal {
 	protected int pic_x=2000;
 	protected int pic_y=pic_x/2;
 	protected WritableImage image;
-	
+
 	public Color mixColors(Color color1, Color color2, double percent){
-		
-		  double redPart = color1.getRed() + (color2.getRed() - color1.getRed())*percent;
-		  double greenPart = color1.getGreen() + (color2.getGreen()-color1.getGreen())*percent;
-		  double bluePart = color1.getBlue() + (color2.getBlue()-color1.getBlue())*percent;
-		  
-		  return new Color(redPart, greenPart, bluePart,1);
-		}
-	
+
+		double redPart = color1.getRed() + (color2.getRed() - color1.getRed())*percent;
+		double greenPart = color1.getGreen() + (color2.getGreen()-color1.getGreen())*percent;
+		double bluePart = color1.getBlue() + (color2.getBlue()-color1.getBlue())*percent;
+
+		return new Color(redPart, greenPart, bluePart,1);
+	}
+
 	public int getPic_x() {
 		return pic_x;
 	}
@@ -50,7 +50,7 @@ public abstract class Fractal {
 		System.out.println("not good");		
 	}
 	public void reset(){
-		
+
 	}
 
 	public Color getCurrentColor() { 
@@ -68,7 +68,7 @@ public abstract class Fractal {
 	public int getNbIteration() {
 		return max_it;
 	}
-	
+
 	public double getZoomingValue() {
 		return zoomingValue;
 	}
@@ -87,19 +87,32 @@ public abstract class Fractal {
 		max_it=nbiterations;
 
 	}
-	public void setZoom(int zoomX,int zoomY, double coeff) {
-		zoom *=1.2;		
-		System.out.println(" x1 FIRST STEP " + x1);
-		System.out.println(" y1 FIRST STEP " + y1);
-		System.out.println(" y2 FIRST STEP " + y2);
-		System.out.println(" x2 FIRST STEP " + x2);		
-		
-			x1 +=0.1;
-			//x2 -=0.1;			
-		
-			y1 +=0.1;
-			y2 -=0.1;					
-			
+	public void setZoom(String x) {		
+		switch(x)
+		{
+		case "zoom" :
+			zoom *=1.1;	
+			System.out.println("ZOOM" + zoom);
+
+			System.out.println(" x1 FIRST STEP " + x1);
+			System.out.println(" y1 FIRST STEP " + y1);
+			System.out.println(" y2 FIRST STEP " + y2);
+			System.out.println(" x2 FIRST STEP " + x2);	
+			if(x1 > -2.4)
+				x1 -=0.1;
+				
+			x2 /=0.1;	
+			y1 *=0.1;
+			y2 /=0.1;
+			break;			
+		case "unzoom":
+			zoom /=1.1;	
+			x1 -=0.1;
+			x2 +=0.1;	
+			y1 -=0.1;
+			y2 +=0.1;
+			break ;
+		}					
 	}
 
 	public void setInsideColor(Color value) {

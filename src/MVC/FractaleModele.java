@@ -96,8 +96,8 @@ public class FractaleModele extends Observable {
 		notifyObservers();
 	}
 
-	public void setZoom(int zoomX,int zoomY, double coeff) {
-		fractal.setZoom(zoomX, zoomY, coeff);
+	public void setZoom(String act) {
+		fractal.setZoom(act);
 		setChanged();
 		notifyObservers();
 	}

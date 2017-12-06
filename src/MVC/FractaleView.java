@@ -216,10 +216,10 @@ public class FractaleView implements Observer {
 		});
 		//zoom
 		zoomButtonPlus.setOnAction((ActionEvent e)->{
-			fracControl.setZoomPlus(0,0);
+			fracControl.setZoomPlus("zoom");
 		});	
 		zoomButtonMinus.setOnAction((ActionEvent e)->{
-			fracControl.setZoomMinus(0,0);
+			fracControl.setZoomMinus("unzoom");
 		});
 		// fractal type
 		fractaleType.setOnAction((ActionEvent e)->{
@@ -253,7 +253,7 @@ public class FractaleView implements Observer {
 		});
 		
 		globe.getSphere().setOnScroll((ScrollEvent event)-> {			
-			fracControl.setZoomPlus((int)event.getDeltaX(),(int)event.getDeltaY());
+			fracControl.setZoomPlus("zoom");
 			System.out.println("EVENTTTTT " + event.getSceneX());
 		});
 	}
