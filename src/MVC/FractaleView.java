@@ -253,11 +253,10 @@ public class FractaleView implements Observer {
 		});
 		
 		globe.getSphere().setOnScroll((ScrollEvent event)-> {			
-			fracControl.setZoomPlus("zoom");
-			System.out.println("EVENTTTTT " + event.getSceneX());
-			
-			if(event.getDeltaX() > 0)
-				System.out.println("SHATAPPPPPP");
+			if(event.getDeltaY() < 0)
+				fracControl.setZoomPlus("unzoom");				
+			else
+				fracControl.setZoomPlus("zoom");			
 		});
 	}
 
