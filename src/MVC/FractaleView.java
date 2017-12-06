@@ -61,6 +61,7 @@ public class FractaleView implements Observer {
 	Scene scene = new Scene(group,600,800);
 	final Rectangle rectangle = new Rectangle(0,0,RECT_WIDTH,RECT_HEIGHT);
 	Button pauseButton = new Button("||");
+	
 	Button playButton = new Button("|>");
 	Button zoomButtonPlus = new Button("+");
 	Button zoomButtonMinus = new Button("-");
@@ -83,7 +84,7 @@ public class FractaleView implements Observer {
 	TextField nbIteration = new TextField();
 	ColorPicker colorPicker = new ColorPicker();
 	ColorPicker colorInsidePicker = new ColorPicker();
-	Button resetButton = new Button("Cancel");
+	Button resetButton = new Button("Reset");
 	private double mousePosX,mousePosY = 0;
 
 

@@ -38,7 +38,6 @@ public class FractaleModele extends Observable {
 		try {
 			t1.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -47,7 +46,6 @@ public class FractaleModele extends Observable {
 		try {
 			t2.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -56,7 +54,6 @@ public class FractaleModele extends Observable {
 		try {
 			t3.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -64,7 +61,6 @@ public class FractaleModele extends Observable {
 		try {
 			t4.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

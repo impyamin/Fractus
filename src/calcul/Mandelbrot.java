@@ -7,7 +7,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
 public class Mandelbrot extends Fractal {
-	public ArrayList<Color> couleurs = new ArrayList<Color>();
+	private ArrayList<Color> couleurs = new ArrayList<Color>();
 
 
 	public Mandelbrot() {
@@ -63,16 +63,18 @@ public class Mandelbrot extends Fractal {
 				}
 				while((Math.pow(z_r,2)) + (Math.pow(z_i,2)) < 4  && i <max_it);
 				
+// 	
+//				if(i < max_it) { 
+//					double log_zn = Math.log( Math.pow(x,2) + Math.pow(y,2) ) / 2;
+//					double nu = Math.log( log_zn / Math.log(2) ) / Math.log(2);
+//					i = i + 1 - nu;
+//				}
 				if(i!=max_it)
 				{
-					Color newColor = mixColors(couleurs.get((int)Math.floor(i)%15), couleurs.get(((int)Math.floor(i)%15)+1), i%1);		
+					//Color newColor = mixColors(couleurs.get((int)Math.floor(i)%15), couleurs.get(((int)Math.floor(i)%15)+1), i%1);	
+					Color newColor = new Color(currentColor.getRed()*i/max_it,currentColor.getGreen()*i/max_it,currentColor.getBlue()*i/max_it,1);
 					image.getPixelWriter().setColor(x, y,newColor);
-				}  	
-				if(i < max_it) { 
-					double log_zn = Math.log( Math.pow(x,2) + Math.pow(y,2) ) / 2;
-					double nu = Math.log( log_zn / Math.log(2) ) / Math.log(2);
-					i = i + 1 - nu;
-				}
+				} 
 	
 				else
 					image.getPixelWriter().setColor(x,y,colorInside);
