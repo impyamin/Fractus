@@ -81,21 +81,18 @@ public abstract class Fractal {
 
 	}
 	public void setZoom(int zoomX,int zoomY, double coeff) {
-		zoom +=150;		
+		zoom *=1.2;		
 		System.out.println(" x1 FIRST STEP " + x1);
 		System.out.println(" y1 FIRST STEP " + y1);
 		System.out.println(" y2 FIRST STEP " + y2);
 		System.out.println(" x2 FIRST STEP " + x2);		
-		if(x1 < -0.5)
-		{
+		
 			x1 +=0.1;
-			x2 -=0.1;			
-		}
-		if(y1 < -0.9)
-		{
+			//x2 -=0.1;			
+		
 			y1 +=0.1;
 			y2 -=0.1;					
-		}		
+			
 	}
 
 	public void setInsideColor(Color value) {

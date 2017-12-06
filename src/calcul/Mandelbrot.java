@@ -11,17 +11,8 @@ public class Mandelbrot extends Fractal {
 
 
 	public Mandelbrot() {
-		fracType=FracType.Mandelbrot;
-		zoom = 400 ;
-		max_it = 50;
-		x1 = -2.1;
-		x2 = 3;
-		y1 = -1.2;
-		y2 = 1.2;
-		currentColor = Color.GREEN;
-		colorInside = Color.BLACK;	
-
-		image = new WritableImage(2000,1000);
+	
+		setup();
 
 
 		couleurs.add(Color.rgb(66, 30, 15));
@@ -41,6 +32,21 @@ public class Mandelbrot extends Fractal {
 		couleurs.add(Color.rgb(153,87,0));
 		couleurs.add(Color.rgb(106,52,3));
 
+
+	}
+	
+	public void setup()
+	{
+		fracType=FracType.Mandelbrot;
+		zoom = 400 ;
+		max_it = 50;
+		x1 = -2.1;
+		x2 = 3;
+		y1 = -1.2;
+		y2 = 1.2;
+		currentColor = Color.GREEN;
+		colorInside = Color.BLACK;	
+		image = new WritableImage(2000,1000);
 
 	}
 	@Override
@@ -83,14 +89,7 @@ public class Mandelbrot extends Fractal {
 	}
 	@Override
 	public void reset(){
-		zoom = 400;
-		max_it = 50;
-		x1 = -2.1;
-		x2 = 3;
-		y1 = -1.2;
-		y2 = 1.2;
-		currentColor = Color.GREEN;
-		colorInside = Color.BLACK;	
-		image = new WritableImage((int)pic_x+1,(int)pic_y);
+		setup();
+		
 	}
 }

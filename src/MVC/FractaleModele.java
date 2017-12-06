@@ -34,28 +34,7 @@ public class FractaleModele extends Observable {
 		long debut = System.currentTimeMillis();
 
 
-		Multithreading t1 = new Multithreading(0,0,500,1000,fractal);
-		try {
-			t1.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-
-		Multithreading t2 = new Multithreading(0,0,1000,1000,fractal);
-		try {
-			t2.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-
-		Multithreading t3 = new Multithreading(0,0,1500,750,fractal);
-		try {
-			t3.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		
 
 		Multithreading t4 = new Multithreading(0,0,2000,1000,fractal);
 		try {
