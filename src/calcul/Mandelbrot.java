@@ -1,6 +1,5 @@
 package calcul;
 
-import java.util.ArrayList;
 
 import MVC.FractaleModele.FracType;
 import javafx.scene.image.WritableImage;
@@ -13,30 +12,11 @@ import javafx.scene.paint.Color;
  */
 
 public class Mandelbrot extends Fractal {
-	private ArrayList<Color> couleurs = new ArrayList<Color>();
 
 
 	public Mandelbrot() {
 	
 		setup();
-
-
-		couleurs.add(Color.rgb(66, 30, 15));
-		couleurs.add(Color.rgb(25, 7, 26));
-		couleurs.add(Color.rgb(9, 1, 47));
-		couleurs.add(Color.rgb(4, 4, 73));
-		couleurs.add(Color.rgb(0, 7, 100));
-		couleurs.add(Color.rgb(12, 44, 138));
-		couleurs.add(Color.rgb(24, 82, 177));
-		couleurs.add(Color.rgb(57, 125, 209));
-		couleurs.add(Color.rgb(134, 181, 229));
-		couleurs.add(Color.rgb(211, 236, 248));
-		couleurs.add(Color.rgb(241, 233, 191));
-		couleurs.add(Color.rgb(248, 201, 95));
-		couleurs.add(Color.rgb(255, 170, 0));
-		couleurs.add(Color.rgb(204,128,0));
-		couleurs.add(Color.rgb(153,87,0));
-		couleurs.add(Color.rgb(106,52,3));
 
 
 	}
@@ -74,16 +54,9 @@ public class Mandelbrot extends Fractal {
 					++i ;
 				}
 				while((Math.pow(z_r,2)) + (Math.pow(z_i,2)) < 4  && i <max_it);
-				
-// 	
-//				if(i < max_it) { 
-//					double log_zn = Math.log( Math.pow(x,2) + Math.pow(y,2) ) / 2;
-//					double nu = Math.log( log_zn / Math.log(2) ) / Math.log(2);
-//					i = i + 1 - nu;
-//				}
+
 				if(i!=max_it)
 				{
-					//Color newColor = mixColors(couleurs.get((int)Math.floor(i)%15), couleurs.get(((int)Math.floor(i)%15)+1), i%1);	
 					Color newColor = new Color(currentColor.getRed()*i/max_it,currentColor.getGreen()*i/max_it,currentColor.getBlue()*i/max_it,1);
 					image.getPixelWriter().setColor(x, y,newColor);
 				} 
