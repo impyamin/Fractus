@@ -22,10 +22,7 @@ public class FractaleControler {
 		fracModele.setZoom(act);
 	}
 
-	public void setZoomMinus(String act) {
-		fracModele.setZoom(act);
-	}
-
+	
 	public void setNbIteration(Integer it) {
 		fracModele.setNbIteration(it);		
 	}

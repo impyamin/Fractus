@@ -45,7 +45,6 @@ public abstract class Fractal {
 	public int getPic_y() {
 		return pic_y;
 	}
-	private double zoomingValue=1.6;	
 	public void run(){
 		System.out.println("not good");		
 	}
@@ -70,7 +69,7 @@ public abstract class Fractal {
 	}
 
 	public double getZoomingValue() {
-		return zoomingValue;
+		return zoom;
 	}
 
 	public void setCurrentColor(Color value) {
@@ -92,7 +91,7 @@ public abstract class Fractal {
 		{
 		case "zoom" :
 			zoom +=100;	
-			System.out.println("ZOOM" + x1);
+			System.out.println("ZOOM" + zoom);
 			System.out.println(" x1 FIRST STEP " + x1);
 			System.out.println(" y1 FIRST STEP " + y1);
 			System.out.println(" y2 FIRST STEP " + y2);

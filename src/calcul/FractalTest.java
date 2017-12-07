@@ -16,6 +16,8 @@ public class FractalTest {
 	private static final int ITERATION = 500;
 	private static final FracType TYPE = FracType.Julia;
 	private static final Color COLORINSIDE = Color.WHITE;
+	private static final double zoomDefault = 400;
+	private static final double zoomIncreased = 500 ;
 
 	FractaleModele modele;
 	FractaleControler  controleur;
@@ -27,7 +29,7 @@ public class FractalTest {
 		controleur = new FractaleControler(modele);
 	}
 
-	//test des set
+	//test des accesseurs
 	@Test
 	public void testSet() {
 		controleur.setNbIteration(ITERATION);
@@ -38,6 +40,14 @@ public class FractalTest {
 		assertEquals(TYPE,modele.getFractalType());
 		controleur.setInsideColor(COLORINSIDE);;
 		assertEquals(COLORINSIDE,modele.getColorInside());
+	}
+	@Test
+	public void setZoomAndUnzoom() {
+		controleur.setZoomPlus("zoom");		
+		assertTrue(zoomIncreased==modele.getZoomingValue());
+		controleur.setZoomPlus("unzoom");
+		assertTrue(zoomDefault == modele.getZoomingValue());
+		
 	}
 
 
