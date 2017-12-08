@@ -26,7 +26,7 @@ public class FractaleModele extends Observable {
 
 	public void createFractale() {
 		//SOURCE : https://stackoverflow.com/questions/14097559/zooming-in-on-mandelbrot-set-fractal-in-java
- 
+
 		Threading t1 = new Threading(0,0,2000,1000,fractal);
 		try {
 			t1.join();
@@ -61,7 +61,7 @@ public class FractaleModele extends Observable {
 	}	
 	public Fractal getFractal() {
 		return fractal;
-	}	
+	}
 	public void setCurrentColor(Color value) {
 		fractal.setCurrentColor(value);	
 		//Notification pour que l'update de l'observer soit déclenché

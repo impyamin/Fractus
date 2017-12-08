@@ -229,6 +229,7 @@ public class FractaleView implements Observer {
 		});
 
 		//mouvement de la souris
+		// SOURCE : https://stackoverflow.com/questions/30915072/mouse-rotation-along-z-axis-in-javafx
 		scene.setOnMouseDragged((MouseEvent me) -> {
 			double dx = (mousePosX - me.getSceneX()) ;
 			double dy = (mousePosY - me.getSceneY());
