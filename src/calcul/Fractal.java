@@ -31,8 +31,7 @@ public abstract class Fractal {
 	}
 
 	//est override dans les classes héritantes
-	public void setup(){
-		
+	public void setup(){		
 	}
 	
 	public void reset(){
@@ -97,11 +96,9 @@ public abstract class Fractal {
 
 			break;			
 		case "unzoom":
-			zoom -=100;	
-			x1 +=0.1;
-			x2 -=0.1;	
-			y1 +=0.1;
-			y2 -=0.1;
+			zoom -=200;	
+			x1 -=0.1;				
+			y1 -=0.1;			
 			break ;
 		}					
 	}

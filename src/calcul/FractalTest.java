@@ -17,7 +17,7 @@ public class FractalTest {
 	private static final FracType TYPE = FracType.Julia;
 	private static final Color COLORINSIDE = Color.WHITE;
 	private static final double zoomDefault = 400;
-	private static final double zoomIncreased = 500 ;
+	private static final double zoomIncreased = 600 ;
 
 	FractaleModele modele;
 	FractaleControler  controleur;
@@ -41,6 +41,8 @@ public class FractalTest {
 		controleur.setInsideColor(COLORINSIDE);;
 		assertEquals(COLORINSIDE,modele.getColorInside());
 	}
+	
+	//test de l'incrémentation lors du zoom et du dezoom
 	@Test
 	public void testZoomAndUnzoom() {
 		controleur.setZoomPlus("zoom");		
@@ -49,6 +51,7 @@ public class FractalTest {
 		assertTrue(zoomDefault == modele.getZoomingValue());		
 	}
 	
+	//test de la  fonction de remise à defaut de la fractale
 	@Test 
 	public void testResetFractale() {
 		FractaleModele mod = new FractaleModele();

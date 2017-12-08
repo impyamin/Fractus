@@ -12,14 +12,9 @@ import javafx.scene.paint.Color;
  */
 
 public class Mandelbrot extends Fractal {
-
-	private int resY;
-	private int resX;	
-
 	public Mandelbrot() {	
 		setup();
 	}
-
 	//parametrage de la fractale pour l'ensemble de Mandelbrot
 	@Override
 	public void setup()
@@ -43,8 +38,8 @@ public class Mandelbrot extends Fractal {
 		for( x = xMin ; x < pic_x;x++)
 			for( y = yMin; y < pic_y; y++) 
 			{
-				double c_r =x/(double)zoom*(1+Math.PI/10)+x1;
-				double c_i =y/(double)zoom+y1 ;
+				double c_r =x/(double)zoom*(1+Math.PI/10)+x1; //déclaration de la partie réelle,en fonction du X, du zoom ainsi que de l'offset
+				double c_i =y/(double)zoom+y1 ;//déclaration de la partie imaginaire,en fonction du X, du zoom ainsi que de l'offset
 				double z_r = 0;
 				double z_i = 0;
 				double i = 0;
@@ -59,12 +54,14 @@ public class Mandelbrot extends Fractal {
 
 				if(i!=max_it)
 				{
+					//si le pixel actuel est en dehors de la fractale , on applique la couleur personnalisé
 					Color newColor = new Color(currentColor.getRed()*i/max_it,currentColor.getGreen()*i/max_it,currentColor.getBlue()*i/max_it,1);
 					image.getPixelWriter().setColor(x, y,newColor);
 				} 
 	
 				else
 					image.getPixelWriter().setColor(x,y,colorInside);
+					//sinon on applique la couleur paramétrée pour l'intérieur de la fractale.
 			}
 		
 	}

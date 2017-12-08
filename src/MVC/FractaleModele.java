@@ -26,7 +26,12 @@ public class FractaleModele extends Observable {
 
 	public void createFractale() {
 		//SOURCE : https://stackoverflow.com/questions/14097559/zooming-in-on-mandelbrot-set-fractal-in-java
-		Multithreading t4 = new Multithreading(0,0,2000,1000,fractal);		
+		Multithreading t1 = new Multithreading(0,0,2000,1000,fractal);
+		try {
+			t1.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}	
 	//action privée donc pas de setChanged() et de notifyObserver()
 	private void setFractaleType(FracType type)  {
