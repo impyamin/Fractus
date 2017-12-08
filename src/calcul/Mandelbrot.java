@@ -22,9 +22,9 @@ public class Mandelbrot extends Fractal {
 	public void setup()
 	{
 		fracType=FracType.Mandelbrot;
-		zoom = 200 ;
+		zoom = 400 ;
 		max_it = 50;
-		x1 = -2.1;
+		x1 = -1.1;
 		x2 = 3;
 		y1 = -1.2;
 		y2 = 1.2;
@@ -36,19 +36,14 @@ public class Mandelbrot extends Fractal {
 
 	}
 	@Override
-	public void run(){
-		resX=(int)((x2-x1)*zoom);
-		resY=(int)((y2-y1)*zoom);
-		image = new WritableImage(resX,resY);
-		System.out.println("RESSYYYY" + resY);
+	public void run(){		
 
 		for( x = 0 ; x < resX;x++)
 		{
 			for( y = 0; y < resY ; y++) 
 			{
-
-				double c_r = (x/((double)zoom)*(1+Math.PI/10))+x1 ;
-				double c_i = (y/((double)zoom))+y1 ;
+				double c_r =x/(double)zoom*(1+Math.PI/10)+x1;
+				double c_i =y/(double)zoom+y1 ;
 				double z_r = 0;
 				double z_i = 0;
 				double i = 0;
