@@ -12,6 +12,12 @@ import javafx.scene.paint.Color;
 
 public class Julia extends Fractal{
 	public Julia(){
+		setup();
+	}
+	
+	//parametrage de la fractale pour l'ensemble de Mandelbrot
+	@Override
+	public void setup(){
 		fracType=FracType.Julia;
 		zoom = 400 ;
 		max_it = 150;
@@ -21,6 +27,9 @@ public class Julia extends Fractal{
 		colorInside = Color.BLACK;	
 		image = new WritableImage(pic_x,pic_y);
 	}
+	
+	//calcul de la fractale
+	//SOURCE : https://zestedesavoir.com/tutoriels/329/dessiner-la-fractale-de-mandelbrot/
 	@Override
 	public void run(){
 		for( x = xMin ; x < pic_x;x++)
@@ -53,15 +62,5 @@ public class Julia extends Fractal{
 			}
 		}
 	}
-	@Override
-	public void reset(){
-		fracType=FracType.Julia;
-		zoom = 100 ;
-		max_it = 150;
-		x1 = -1;
-		y1 = -1.2;
-		currentColor = Color.BLUEVIOLET;
-		colorInside = Color.BLACK;	
-		image = new WritableImage((int)pic_x,(int)pic_y);
-	}
+
 }

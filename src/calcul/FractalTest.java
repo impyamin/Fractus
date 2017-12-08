@@ -29,7 +29,7 @@ public class FractalTest {
 		controleur = new FractaleControler(modele);
 	}
 
-	//test des accesseurs
+	//test des accesseurs/mutateurs
 	@Test
 	public void testSet() {
 		controleur.setNbIteration(ITERATION);

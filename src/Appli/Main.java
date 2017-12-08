@@ -16,9 +16,11 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		//Création du Modele-Vue-Controleur
 		FractaleModele modele = new FractaleModele();
 		FractaleControler fracControl =new FractaleControler(modele);
 		FractaleView view = new FractaleView(fracControl, primaryStage);
+		//Ajout de l'observer
 		modele.addObserver(view);
 		
 	}

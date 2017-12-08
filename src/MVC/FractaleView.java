@@ -7,7 +7,6 @@ import Appli.Globe;
 import MVC.FractaleModele.FracType;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -104,8 +103,6 @@ public class FractaleView implements Observer {
 		primaryStage.setWidth(WINDOW_WIDTH);
 		primaryStage.setScene(scene);
 
-		globe.handleScroll();
-
 		for(Button button : buttons)
 		{
 			button.setMinSize(BUTTON_SIZE,BUTTON_SIZE);
@@ -172,7 +169,6 @@ public class FractaleView implements Observer {
 
 		globe.getSphere().setMaterial(phongMaterial);
 		rotateAroundYAxis(globe.getSphere()).play();
-		globe.handleRotationEvents();
 
 		actionEventManagement();
 
@@ -239,8 +235,7 @@ public class FractaleView implements Observer {
 		scene.setOnMouseDragged((MouseEvent me) -> {
 			double dx = (mousePosX - me.getSceneX()) ;
 			double dy = (mousePosY - me.getSceneY());
-			System.out.println(dx);
-			System.out.println(dy);
+
 			if (me.isPrimaryButtonDown() && globe.contains(me.getSceneX(), me.getSceneY()))
 			{
 				globe.getRotateZ().setAngle(globe.getRotateZ().getAngle() - 

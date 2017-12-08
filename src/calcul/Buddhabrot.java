@@ -30,7 +30,6 @@ public class Buddhabrot extends Fractal {
 	@SuppressWarnings("null")
 	@Override
 	public void run(){
-		System.out.println("BuddhaBrot try");
 		int image_x = (int) ((x2 - x1) * zoom);
 		int image_y = (int) ((y2 - y1) * zoom);
 
@@ -81,13 +80,11 @@ public class Buddhabrot extends Fractal {
 				
 			}
 		}
-		System.out.println("before problemes");
 		for(int x =0; x<image_x;x++)
 			for(int y=0;y<image_y;y++)
 			{
 				Color newColor = new Color(Math.min(pixels_rouge[x][y], 255), Math.min(pixels_vert[x][y], 255), Math.min(pixels_bleu[x][y], 255),1);
 				image.getPixelWriter().setColor(x, y,newColor);
-				System.out.println(newColor.getRed()+"."+newColor.getGreen()+"."+newColor.getBlue());
 
 			}
 

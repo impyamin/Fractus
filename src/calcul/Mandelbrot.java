@@ -13,10 +13,15 @@ import javafx.scene.paint.Color;
 
 public class Mandelbrot extends Fractal {
 
+	private int resY;
+	private int resX;	
 
 	public Mandelbrot() {	
 		setup();
 	}
+
+	//parametrage de la fractale pour l'ensemble de Mandelbrot
+	@Override
 	public void setup()
 	{
 		fracType=FracType.Mandelbrot;
@@ -30,12 +35,12 @@ public class Mandelbrot extends Fractal {
 		colorInside = Color.BLACK;	
 		image = new WritableImage(2000,1000);
 	}
+	//calcul de la fractale
+	//SOURCE : https://zestedesavoir.com/tutoriels/329/dessiner-la-fractale-de-mandelbrot/
 	@Override
 	public void run(){
-		System.out.println("AZDIUAZDIUAZ     " + pic_x);
+
 		for( x = xMin ; x < pic_x;x++)
-		{
-			
 			for( y = yMin; y < pic_y; y++) 
 			{
 				double c_r =x/(double)zoom*(1+Math.PI/10)+x1;
@@ -61,10 +66,7 @@ public class Mandelbrot extends Fractal {
 				else
 					image.getPixelWriter().setColor(x,y,colorInside);
 			}
-		}
+		
 	}
-	@Override
-	public void reset(){
-		setup();		
-	}
+
 }

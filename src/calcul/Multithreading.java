@@ -17,7 +17,7 @@ public class Multithreading extends Thread {
 	FracType fracType;
 
 	public Multithreading(int x1,int y1,int x2,int y2,Fractal frac){
-
+		//instantiation de la factale
 		fractal=frac;
 		fractal.xMin =x1;
 		fractal.yMin =y1;
