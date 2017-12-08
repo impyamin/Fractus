@@ -90,23 +90,24 @@ public abstract class Fractal {
 		switch(x)
 		{
 		case "zoom" :
-			zoom +=100;	
+			zoom +=250;	
 			System.out.println("ZOOM" + zoom);
 			System.out.println(" x1 FIRST STEP " + x1);
 			System.out.println(" y1 FIRST STEP " + y1);
 			System.out.println(" y2 FIRST STEP " + y2);
 			System.out.println(" x2 FIRST STEP " + x2);			
-			x1 +=0.1;			
-			x2 +=0.1;	
-			y1 +=0.1;
-			y2 +=0.1;
+			x1 +=0.05;
+			y1 +=0.05;
+			x2 +=0.05;
+			y2 +=0.05;
+			
 			break;			
 		case "unzoom":
 			zoom -=100;	
-			x1 -=0.01;
-			x2 +=0.01;	
-			y1 -=0.01;
-			y2 +=0.01;
+			x1 -=0.1;
+			x2 +=0.1;	
+			y1 -=0.1;
+			y2 +=0.1;
 			break ;
 		}					
 	}

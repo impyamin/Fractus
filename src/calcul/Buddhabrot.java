@@ -34,7 +34,7 @@ public class Buddhabrot extends Fractal {
 		int image_x = (int) ((x2 - x1) * zoom);
 		int image_y = (int) ((y2 - y1) * zoom);
 
-		/*int pixels_rouge[][]= new int[image_x][image_y];
+		int pixels_rouge[][]= new int[image_x][image_y];
 		int pixels_vert[][] = new int[image_x][image_y];
 		int pixels_bleu[][] = new int[image_x][image_y];
 		for(int i=0;i<image_x;i++)
@@ -90,7 +90,7 @@ public class Buddhabrot extends Fractal {
 				System.out.println(newColor.getRed()+"."+newColor.getGreen()+"."+newColor.getBlue());
 
 			}
-*/
+
 	}
 	@Override
 	public void reset(){

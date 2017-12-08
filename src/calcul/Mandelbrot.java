@@ -14,35 +14,41 @@ import javafx.scene.paint.Color;
 public class Mandelbrot extends Fractal {
 
 
-	public Mandelbrot() {
-	
+	public Mandelbrot() {	
 		setup();
-
-
 	}
-	
+	private int resX;	
+	private int resY;
 	public void setup()
 	{
 		fracType=FracType.Mandelbrot;
-		zoom = 400 ;
+		zoom = 200 ;
 		max_it = 50;
 		x1 = -2.1;
 		x2 = 3;
 		y1 = -1.2;
 		y2 = 1.2;
 		currentColor = Color.GREEN;
-		colorInside = Color.BLACK;	
-		image = new WritableImage(2000,1000);
+		colorInside = Color.BLACK;
+		resX=(int)((x2-x1)*zoom);
+		resY=(int)((y2-y1)*zoom);
+		image = new WritableImage(resX,resY);
 
 	}
 	@Override
 	public void run(){
-		for( x = xMin ; x < pic_x;x++)
+		resX=(int)((x2-x1)*zoom);
+		resY=(int)((y2-y1)*zoom);
+		image = new WritableImage(resX,resY);
+		System.out.println("RESSYYYY" + resY);
+
+		for( x = 0 ; x < resX;x++)
 		{
-			for( y = yMin; y < pic_y ; y++) 
+			for( y = 0; y < resY ; y++) 
 			{
-				double c_r = (x+x2)/((double)zoom)*(1+Math.PI/10)+x1 ;
-				double c_i = (y+y2)/((double)zoom)+y1 ;
+
+				double c_r = (x/((double)zoom)*(1+Math.PI/10))+x1 ;
+				double c_i = (y/((double)zoom))+y1 ;
 				double z_r = 0;
 				double z_i = 0;
 				double i = 0;
@@ -68,7 +74,6 @@ public class Mandelbrot extends Fractal {
 	}
 	@Override
 	public void reset(){
-		setup();
-		
+		setup();		
 	}
 }

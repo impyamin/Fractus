@@ -42,7 +42,7 @@ public class FractaleModele extends Observable {
 
 		
 
-		Multithreading t4 = new Multithreading(0,0,2000,1000,fractal);
+		Multithreading t4 = new Multithreading(0,0,5000,5000,fractal);
 		try {
 			t4.join();
 		} catch (InterruptedException e) {

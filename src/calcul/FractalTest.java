@@ -42,12 +42,21 @@ public class FractalTest {
 		assertEquals(COLORINSIDE,modele.getColorInside());
 	}
 	@Test
-	public void setZoomAndUnzoom() {
+	public void testZoomAndUnzoom() {
 		controleur.setZoomPlus("zoom");		
 		assertTrue(zoomIncreased==modele.getZoomingValue());
 		controleur.setZoomPlus("unzoom");
-		assertTrue(zoomDefault == modele.getZoomingValue());
-		
+		assertTrue(zoomDefault == modele.getZoomingValue());		
+	}
+	
+	@Test 
+	public void testResetFractale() {
+		FractaleModele mod = new FractaleModele();
+		controleur.setNbIteration(150);
+		controleur.setZoomPlus("zoom");
+		controleur.reset();
+		assertTrue(mod.getNbIteration()==modele.getNbIteration()
+			   && mod.getZoomingValue()==modele.getZoomingValue());		
 	}
 
 
