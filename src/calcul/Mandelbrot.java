@@ -17,30 +17,26 @@ public class Mandelbrot extends Fractal {
 	public Mandelbrot() {	
 		setup();
 	}
-	private int resX;	
-	private int resY;
 	public void setup()
 	{
 		fracType=FracType.Mandelbrot;
 		zoom = 400 ;
 		max_it = 50;
-		x1 = -1.1;
+		x1 = -2.1;
 		x2 = 3;
 		y1 = -1.2;
 		y2 = 1.2;
 		currentColor = Color.GREEN;
-		colorInside = Color.BLACK;
-		resX=(int)((x2-x1)*zoom);
-		resY=(int)((y2-y1)*zoom);
-		image = new WritableImage(resX,resY);
-
+		colorInside = Color.BLACK;	
+		image = new WritableImage(2000,1000);
 	}
 	@Override
-	public void run(){		
-
-		for( x = 0 ; x < resX;x++)
+	public void run(){
+		System.out.println("AZDIUAZDIUAZ     " + pic_x);
+		for( x = xMin ; x < pic_x;x++)
 		{
-			for( y = 0; y < resY ; y++) 
+			
+			for( y = yMin; y < pic_y; y++) 
 			{
 				double c_r =x/(double)zoom*(1+Math.PI/10)+x1;
 				double c_i =y/(double)zoom+y1 ;
