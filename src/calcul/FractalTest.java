@@ -28,7 +28,6 @@ public class FractalTest {
 		modele = new FractaleModele();
 		controleur = new FractaleControler(modele);
 	}
-
 	//test des accesseurs/mutateurs
 	@Test
 	public void testSet() {
@@ -40,8 +39,7 @@ public class FractalTest {
 		assertEquals(TYPE,modele.getFractalType());
 		controleur.setInsideColor(COLORINSIDE);;
 		assertEquals(COLORINSIDE,modele.getColorInside());
-	}
-	
+	}	
 	//test de l'incrémentation lors du zoom et du dezoom
 	@Test
 	public void testZoomAndUnzoom() {
