@@ -26,10 +26,7 @@ public class FractaleModele extends Observable {
 
 	public void createFractale() {
 		//SOURCE : https://stackoverflow.com/questions/14097559/zooming-in-on-mandelbrot-set-fractal-in-java
-<<<<<<< HEAD
-=======
 
->>>>>>> 2518b1037ffe03e42ba23033e4e391274820abc9
 		Threading t1 = new Threading(0,0,2000,1000,fractal);
 		try {
 			t1.join();
@@ -42,10 +39,7 @@ public class FractaleModele extends Observable {
 	private void setFractaleType(FracType type)  {
 		fractalType=type;
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> 2518b1037ffe03e42ba23033e4e391274820abc9
 	public Color getCurrentColor() {
 		return fractal.getCurrentColor();
 	}	
@@ -68,11 +62,7 @@ public class FractaleModele extends Observable {
 	public Fractal getFractal() {
 		return fractal;
 	}
-<<<<<<< HEAD
-=======
 
-	
->>>>>>> 2518b1037ffe03e42ba23033e4e391274820abc9
 	public void setCurrentColor(Color value) {
 		fractal.setCurrentColor(value);	
 		//Notification pour que l'update de l'observer soit déclenché
