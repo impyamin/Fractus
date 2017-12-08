@@ -35,7 +35,7 @@ import javafx.util.Duration;
  */
 
 public class FractaleView implements Observer {
-
+	//déclaration des variables gobales 
 	private final double WINDOW_HEIGHT = 1920.;
 	private final double WINDOW_WIDTH = 1080.;
 	private final double RECT_HEIGHT = WINDOW_HEIGHT;
@@ -56,41 +56,38 @@ public class FractaleView implements Observer {
 	private final double COLOR_PICKER_Y=350;
 	private final double COLOR_PICKER_HEIGHT = 285.;
 	private final double SHIFT=10.;
+	private double mousePosX,mousePosY = 0;
 
 
 	FractaleControler fracControl;
 	Globe globe;
 
-
-	Group group = new Group();
-	Scene scene = new Scene(group,600,800);
+	//Création de la scène et de son contenu ( délacration des boutons, des textes, et des autres élements tel que la couleur ou le menu défilant)
+	final Group group = new Group();
+	final Scene scene = new Scene(group,600,800);
 	final Rectangle rectangle = new Rectangle(0,0,RECT_WIDTH,RECT_HEIGHT);
 	Button pauseButton = new Button("||");
-	
 	Button playButton = new Button("|>");
 	Button zoomButtonPlus = new Button("+");
 	Button zoomButtonMinus = new Button("-");
+	Button resetButton = new Button("Reset");
+	Button[] buttons = {zoomButtonPlus,zoomButtonMinus,pauseButton,playButton};
+	double[] buttonX = {BUT_ZOOM_PLUS_X,BUT_ZOOM_MINUS_X,BUT_PAUSE_X,BUT_PLAY_X};
 	ObservableList<FracType> options = 
 			FXCollections.observableArrayList(
 					FracType.Mandelbrot,
-					FracType.Julia,
-					FracType.Buddhabrot
+					FracType.Julia
 					);
-	Button[] buttons = {zoomButtonPlus,zoomButtonMinus,pauseButton,playButton};
-	double[] buttonX = {BUT_ZOOM_PLUS_X,BUT_ZOOM_MINUS_X,BUT_PAUSE_X,BUT_PLAY_X};
 	final ComboBox<FracType> fractaleType = new ComboBox<FracType>(options);
 	PhongMaterial phongMaterial = new PhongMaterial();
-
 	final Label textIterWarningLabel = new Label();
 	final Label nbIterationLabel = new Label();
-	final Label fractaleTypeLabel = new Label();
-	final Label colorLabel = new Label();
-	final Label colorInsideLabel = new Label();
-	TextField nbIteration = new TextField();
+	final Label fractaleTypeLabel = new Label("Fractale Type :");
+	final Label colorLabel = new Label("Color :");
+	final Label colorInsideLabel = new Label("Color inside :");
+	TextField nbIteration = new TextField("Iteration number :");
 	ColorPicker colorPicker = new ColorPicker();
 	ColorPicker colorInsidePicker = new ColorPicker();
-	Button resetButton = new Button("Reset");
-	private double mousePosX,mousePosY = 0;
 
 
 	public FractaleView(FractaleControler fracControl, Stage primaryStage) {
@@ -103,6 +100,7 @@ public class FractaleView implements Observer {
 		primaryStage.setWidth(WINDOW_WIDTH);
 		primaryStage.setScene(scene);
 
+		//Positionnement des éléments
 		for(Button button : buttons)
 		{
 			button.setMinSize(BUTTON_SIZE,BUTTON_SIZE);
@@ -112,13 +110,11 @@ public class FractaleView implements Observer {
 		for(int num=0;num<buttonX.length;num++)
 			buttons[num].setLayoutX(buttonX[num]);
 
-		fractaleTypeLabel.setText("Fractale Type :");
 		fractaleTypeLabel.setLayoutY(FRACTALE_TYPE_Y-ELEMENT_HEIGHT);
 		fractaleTypeLabel.setLayoutX(ELEMENT_X);
 		fractaleType.setLayoutY(FRACTALE_TYPE_Y);
 		fractaleType.setLayoutX(ELEMENT_X);
 		fractaleType.setValue((FracType) options.toArray()[0]);
-		nbIterationLabel.setText("Iteration number :");
 		nbIterationLabel.setLayoutX(ELEMENT_X);
 		nbIterationLabel.setLayoutY(NB_ITERATION_Y-ELEMENT_HEIGHT);
 		nbIteration.setLayoutX(ELEMENT_X);
@@ -127,14 +123,13 @@ public class FractaleView implements Observer {
 		textIterWarningLabel.setLayoutX(ELEMENT_X);
 		textIterWarningLabel.setLayoutY(NB_ITERATION_Y+ELEMENT_HEIGHT+SHIFT);
 
-		colorLabel.setText("Color :");
 		colorLabel.setLayoutX(ELEMENT_X);
 		colorLabel.setLayoutY(COLOR_PICKER_Y-ELEMENT_HEIGHT);		
 		colorPicker.setLayoutX(ELEMENT_X);
 		colorPicker.setLayoutY(COLOR_PICKER_Y);
 		colorPicker.setValue(fracControl.getCurrentColor());
 
-		colorInsideLabel.setText("Color inside :");
+
 		colorInsideLabel.setLayoutX(ELEMENT_X);
 		colorInsideLabel.setLayoutY(COLOR_PICKER_Y+COLOR_PICKER_HEIGHT-ELEMENT_HEIGHT);		
 		colorInsidePicker.setLayoutX(ELEMENT_X);
@@ -147,6 +142,7 @@ public class FractaleView implements Observer {
 
 		rectangle.setFill(Color.GREY);
 
+		//ajouts au groupe
 		group.getChildren().add(globe.getSphere());
 		group.getChildren().add(rectangle);
 		group.getChildren().add(pauseButton);
@@ -164,20 +160,21 @@ public class FractaleView implements Observer {
 		group.getChildren().add(colorInsideLabel); 
 		group.getChildren().add(resetButton);
 
+		//application de la fractale
 		phongMaterial.setDiffuseMap(fracControl.getImage());
-
-
 		globe.getSphere().setMaterial(phongMaterial);
+
+		//rotation de base 
 		rotateAroundYAxis(globe.getSphere()).play();
-
+		
+		//gestion des évenements
 		actionEventManagement();
-
+		
 		primaryStage.show();
-
 	}
 
 
-
+	//SOURCE : https://gist.github.com/jewelsea/7206287
 	private RotateTransition rotateAroundYAxis(Sphere s) {
 		RotateTransition rotate = new RotateTransition(Duration.seconds(25), s);
 		rotate.setFromAngle(360);
@@ -212,10 +209,10 @@ public class FractaleView implements Observer {
 		});
 		//zoom
 		zoomButtonPlus.setOnAction((ActionEvent e)->{
-			fracControl.setZoomPlus("zoom");
+			fracControl.setZoom("zoom");
 		});	
 		zoomButtonMinus.setOnAction((ActionEvent e)->{
-			fracControl.setZoomPlus("unzoom");
+			fracControl.setZoom("unzoom");
 		});
 		// fractal type
 		fractaleType.setOnAction((ActionEvent e)->{
@@ -225,13 +222,13 @@ public class FractaleView implements Observer {
 		resetButton.setOnAction((ActionEvent e )->{
 			fracControl.reset();
 		});
-		
+		//click sur la souris
 		scene.setOnMousePressed((MouseEvent me) -> {
 			mousePosX = me.getSceneX();
 			mousePosY = me.getSceneY();
 		});
 
-
+		//mouvement de la souris
 		scene.setOnMouseDragged((MouseEvent me) -> {
 			double dx = (mousePosX - me.getSceneX()) ;
 			double dy = (mousePosY - me.getSceneY());
@@ -247,18 +244,17 @@ public class FractaleView implements Observer {
 			mousePosY = me.getSceneY();
 		});
 		
+		//
 		globe.getSphere().setOnScroll((ScrollEvent event)-> {			
 			if(event.getDeltaY() < 0)
-				fracControl.setZoomPlus("unzoom");				
+				fracControl.setZoom("unzoom");				
 			else
-				fracControl.setZoomPlus("zoom");			
+				fracControl.setZoom("zoom");			
 		});
 	}
 
 
-
-
-
+	//Mise à jour après réception de la notification venant de l'observable 
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		phongMaterial.setDiffuseMap(fracControl.getImage());

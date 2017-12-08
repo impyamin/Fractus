@@ -9,14 +9,14 @@ import MVC.FractaleModele.FracType;
  *
  */
 
-public class Multithreading extends Thread {
+public class Threading extends Thread {
 
 
 	FractaleModele fracMod;
 	Fractal fractal;
 	FracType fracType;
 
-	public Multithreading(int x1,int y1,int x2,int y2,Fractal frac){
+	public Threading(int x1,int y1,int x2,int y2,Fractal frac){
 		//instantiation de la factale
 		fractal=frac;
 		fractal.xMin =x1;

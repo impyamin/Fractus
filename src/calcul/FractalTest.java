@@ -43,9 +43,9 @@ public class FractalTest {
 	//test de l'incrémentation lors du zoom et du dezoom
 	@Test
 	public void testZoomAndUnzoom() {
-		controleur.setZoomPlus("zoom");		
+		controleur.setZoom("zoom");		
 		assertTrue(zoomIncreased==modele.getZoomingValue());
-		controleur.setZoomPlus("unzoom");
+		controleur.setZoom("unzoom");
 		assertTrue(zoomDefault == modele.getZoomingValue());		
 	}
 	
@@ -54,7 +54,7 @@ public class FractalTest {
 	public void testResetFractale() {
 		FractaleModele mod = new FractaleModele();
 		controleur.setNbIteration(150);
-		controleur.setZoomPlus("zoom");
+		controleur.setZoom("zoom");
 		controleur.reset();
 		assertTrue(mod.getNbIteration()==modele.getNbIteration()
 			   && mod.getZoomingValue()==modele.getZoomingValue());		

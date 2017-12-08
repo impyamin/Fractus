@@ -17,7 +17,7 @@ public class FractaleControler {
 		fracModele = modele ;
 	}
 
-	public void setZoomPlus(String act){
+	public void setZoom(String act){
 		fracModele.setZoom(act);
 	}
 
