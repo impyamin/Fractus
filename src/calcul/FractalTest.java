@@ -59,9 +59,5 @@ public class FractalTest {
 		assertTrue(mod.getNbIteration()==modele.getNbIteration()
 			   && mod.getZoomingValue()==modele.getZoomingValue());		
 	}
-
-
-
-
 }
 

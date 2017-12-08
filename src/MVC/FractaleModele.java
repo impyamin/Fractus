@@ -6,7 +6,7 @@ import calcul.Buddhabrot;
 import calcul.Fractal;
 import calcul.Julia;
 import calcul.Mandelbrot;
-import calcul.Multithreading;
+import calcul.Threading;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -26,7 +26,7 @@ public class FractaleModele extends Observable {
 
 	public void createFractale() {
 		//SOURCE : https://stackoverflow.com/questions/14097559/zooming-in-on-mandelbrot-set-fractal-in-java
-		Multithreading t1 = new Multithreading(0,0,2000,1000,fractal);
+		Threading t1 = new Threading(0,0,2000,1000,fractal);
 		try {
 			t1.join();
 		} catch (InterruptedException e) {
@@ -37,44 +37,34 @@ public class FractaleModele extends Observable {
 	private void setFractaleType(FracType type)  {
 		fractalType=type;
 	}
-
-
 	public Color getCurrentColor() {
 		return fractal.getCurrentColor();
-	}
-	
+	}	
 	public Color getColorInside() {
 		return fractal.getColorInside();
-	}
-	
+	}	
 	public FracType getFractalType() {
 		return fractalType;
-	}
-	
+	}	
 	public int getNbIteration() {
 		return fractal.getNbIteration();
 	}
 	
 	public double getZoomingValue() {
 		return fractal.getZoomingValue();
-	}
-	
+	}	
 	public WritableImage getImage() {
 		return fractal.getImage();
-	}
-	
+	}	
 	public Fractal getFractal() {
 		return fractal;
 	}
-
-
 	public void setCurrentColor(Color value) {
 		fractal.setCurrentColor(value);	
 		//Notification pour que l'update de l'observer soit déclenché
 		setChanged();
 		notifyObservers();
 	}
-
 	public void setNbIteration(int nbiterations){
 		fractal.setNbIteration(nbiterations);;
 		setChanged();
@@ -90,13 +80,11 @@ public class FractaleModele extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-
 	public void reset() {
 		fractal.reset();
 		setChanged();
 		notifyObservers();
 	}
-
 	public void setNewFractal(FracType type) {
 		setFractaleType(type);
 		switch (type) {
