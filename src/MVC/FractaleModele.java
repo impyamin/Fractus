@@ -1,8 +1,6 @@
 package MVC;
 
 import java.util.Observable;
-
-import calcul.Buddhabrot;
 import calcul.Fractal;
 import calcul.Julia;
 import calcul.Mandelbrot;
@@ -20,23 +18,34 @@ import javafx.scene.paint.Color;
 public class FractaleModele extends Observable {	
 	Fractal fractal = new Mandelbrot();
 	private FracType fractalType=fractal.getFractalType();
+	
+	//Type de la fractale  	
 	public enum FracType {
-		Mandelbrot,Julia,Buddhabrot
+		Mandelbrot,Julia;
 	}
 
 	public void createFractale() {
 		//SOURCE : https://stackoverflow.com/questions/14097559/zooming-in-on-mandelbrot-set-fractal-in-java
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2518b1037ffe03e42ba23033e4e391274820abc9
 		Threading t1 = new Threading(0,0,2000,1000,fractal);
 		try {
 			t1.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
 	}	
 	//action privée donc pas de setChanged() et de notifyObserver()
 	private void setFractaleType(FracType type)  {
 		fractalType=type;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2518b1037ffe03e42ba23033e4e391274820abc9
 	public Color getCurrentColor() {
 		return fractal.getCurrentColor();
 	}	
@@ -59,6 +68,11 @@ public class FractaleModele extends Observable {
 	public Fractal getFractal() {
 		return fractal;
 	}
+<<<<<<< HEAD
+=======
+
+	
+>>>>>>> 2518b1037ffe03e42ba23033e4e391274820abc9
 	public void setCurrentColor(Color value) {
 		fractal.setCurrentColor(value);	
 		//Notification pour que l'update de l'observer soit déclenché
@@ -94,9 +108,7 @@ public class FractaleModele extends Observable {
 		case Julia :
 			fractal = new Julia();
 			break;
-		case Buddhabrot:
-			fractal = new Buddhabrot();
-			break;
+
 		}
 		setChanged();
 		notifyObservers();
